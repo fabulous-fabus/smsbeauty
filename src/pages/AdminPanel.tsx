@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { ArrowLeft, Edit2, Check } from 'lucide-react';
+import { ArrowLeft, Edit2, Check, AlertCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface Devis {
@@ -29,6 +29,8 @@ export default function AdminPanel() {
   const [prestations, setPrestations] = useState<Prestation[]>([
     { nom: '', quantite: 1, prix_unitaire: 0 },
   ]);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     loadDevis();
@@ -73,6 +75,9 @@ export default function AdminPanel() {
   const submitResponse = async () => {
     if (!selectedDevis) return;
 
+    setSuccessMessage('');
+    setErrorMessage('');
+
     try {
       const response = `Devis préparé pour ${selectedDevis.nom}:\n\n${prestations
         .filter((p) => p.nom)
@@ -103,14 +108,25 @@ export default function AdminPanel() {
         }),
       });
 
-      if (!devisResponse.ok && devisResponse.status !== 404) {
-        console.warn('Email notification failed');
+      if (devisResponse.ok) {
+        setSuccessMessage(`✅ Devis envoyé à ${selectedDevis.nom} (${selectedDevis.email})`);
+      } else if (devisResponse.status === 404) {
+        setSuccessMessage(
+          `✅ Devis sauvegardé pour ${selectedDevis.nom}\n⚠️ Email sera envoyé après déploiement sur Netlify`
+        );
+      } else {
+        setErrorMessage('Erreur lors de l\'envoi de l\'email');
       }
 
-      loadDevis();
-      setSelectedDevis(null);
-      setPrestations([{ nom: '', quantite: 1, prix_unitaire: 0 }]);
+      setTimeout(() => {
+        loadDevis();
+        setSelectedDevis(null);
+        setPrestations([{ nom: '', quantite: 1, prix_unitaire: 0 }]);
+        setSuccessMessage('');
+      }, 3000);
     } catch (err) {
+      const errorMsg = err instanceof Error ? err.message : 'Erreur lors de la sauvegarde';
+      setErrorMessage(errorMsg);
       console.error('Error:', err);
     }
   };
@@ -178,6 +194,20 @@ export default function AdminPanel() {
             {selectedDevis ? (
               <div className="bg-white rounded-lg shadow-md p-6">
                 <h2 className="font-serif text-2xl text-charcoal-800 mb-6">Répondre à {selectedDevis.nom}</h2>
+
+                {successMessage && (
+                  <div className="bg-green-50 border border-green-200 rounded p-4 mb-6 flex items-start gap-3">
+                    <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <p className="text-green-700 text-sm whitespace-pre-line">{successMessage}</p>
+                  </div>
+                )}
+
+                {errorMessage && (
+                  <div className="bg-red-50 border border-red-200 rounded p-4 mb-6 flex items-start gap-3">
+                    <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                    <p className="text-red-700 text-sm">{errorMessage}</p>
+                  </div>
+                )}
 
                 <div className="mb-6 space-y-4">
                   <div>
