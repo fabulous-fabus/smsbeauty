@@ -73,26 +73,45 @@ export default function AdminPanel() {
   const submitResponse = async () => {
     if (!selectedDevis) return;
 
-    const response = `Devis préparé pour ${selectedDevis.nom}:\n\n${prestations
-      .filter((p) => p.nom)
-      .map((p) => `- ${p.nom}: ${p.quantite} × ${p.prix_unitaire}€ = ${calculateTotal(p)}€`)
-      .join('\n')}\n\nTOTAL: ${calculateGrandTotal()}€`;
+    try {
+      const response = `Devis préparé pour ${selectedDevis.nom}:\n\n${prestations
+        .filter((p) => p.nom)
+        .map((p) => `- ${p.nom}: ${p.quantite} × ${p.prix_unitaire}€ = ${calculateTotal(p)}€`)
+        .join('\n')}\n\nTOTAL: ${calculateGrandTotal()}€`;
 
-    const { error } = await supabase
-      .from('devis')
-      .update({
-        reponse: response,
-        statut: 'traite',
-        repondu_at: new Date().toISOString(),
-      })
-      .eq('id', selectedDevis.id);
+      const { error } = await supabase
+        .from('devis')
+        .update({
+          reponse: response,
+          statut: 'traite',
+          repondu_at: new Date().toISOString(),
+        })
+        .eq('id', selectedDevis.id);
 
-    if (error) {
-      console.error('Error updating devis:', error);
-    } else {
+      if (error) throw new Error(error.message);
+
+      // Send devis email to client
+      const devisResponse = await fetch('/.netlify/functions/send-devis', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          clientName: selectedDevis.nom,
+          clientEmail: selectedDevis.email,
+          service: selectedDevis.service,
+          prestations: prestations.filter((p) => p.nom),
+          total: calculateGrandTotal(),
+        }),
+      });
+
+      if (!devisResponse.ok && devisResponse.status !== 404) {
+        console.warn('Email notification failed');
+      }
+
       loadDevis();
       setSelectedDevis(null);
       setPrestations([{ nom: '', quantite: 1, prix_unitaire: 0 }]);
+    } catch (err) {
+      console.error('Error:', err);
     }
   };
 
