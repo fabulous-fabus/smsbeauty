@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Lato:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-charcoal-700 antialiased;
+  }
+}
+
+@layer components {
+  .gold-divider {
+    @apply w-16 h-0.5 bg-gold-500 mx-auto;
+  }
+
+  .section-title {
+    @apply font-serif text-4xl md:text-5xl text-charcoal-800 text-center mb-4 leading-tight;
+  }
+
+  .section-subtitle {
+    @apply text-charcoal-500 text-center text-lg max-w-2xl mx-auto leading-relaxed;
+  }
+
+  .btn-gold {
+    @apply inline-block bg-gold-500 text-white font-sans font-medium tracking-widest uppercase text-sm px-8 py-4 transition-all duration-300 hover:bg-gold-600 hover:shadow-lg hover:scale-105;
+  }
+
+  .btn-outline-gold {
+    @apply inline-block border-2 border-gold-500 text-gold-500 font-sans font-medium tracking-widest uppercase text-sm px-8 py-4 transition-all duration-300 hover:bg-gold-500 hover:text-white hover:shadow-lg hover:scale-105;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  .text-shadow-sm {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  }
+}
