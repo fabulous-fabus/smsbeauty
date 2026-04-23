@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, Send, CheckCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 const contactInfo = [
   {
     icon: Phone,
     title: 'Téléphone',
-    value: '+33 6 00 00 00 00',
+    value: '+33 6 66 37 75 26',
     link: 'tel:+33600000000',
   },
   {
@@ -17,7 +18,7 @@ const contactInfo = [
   {
     icon: MapPin,
     title: 'Adresse',
-    value: 'Paris & Île-de-France',
+    value: 'Hyères et Var',
     link: '#',
   },
 ];
@@ -31,6 +32,7 @@ export default function Contact() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -40,9 +42,45 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1200));
-    setLoading(false);
-    setSubmitted(true);
+    setError('');
+
+    try {
+      // Insert into Supabase
+      const { error: dbError } = await supabase.from('devis').insert([
+        {
+          nom: formData.name,
+          email: formData.email,
+          telephone: formData.phone,
+          service: formData.service,
+          message: formData.message,
+          statut: 'en_attente',
+        },
+      ]);
+
+      if (dbError) throw new Error(dbError.message);
+
+      // Send email via Netlify function (ignore in dev if not available)
+      try {
+        const response = await fetch('/.netlify/functions/send-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+
+        if (!response.ok && response.status !== 404) {
+          console.warn('Email notification failed');
+        }
+      } catch (emailErr) {
+        console.warn('Netlify functions not available in dev mode');
+      }
+
+      setSubmitted(true);
+      setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -110,16 +148,28 @@ export default function Contact() {
                 <h3 className="font-serif text-2xl text-charcoal-800 mb-3">
                   Message envoyé !
                 </h3>
-                <p className="text-charcoal-500 text-sm leading-relaxed max-w-sm">
-                  Merci pour votre message, <strong>{formData.name}</strong>. Notre équipe vous
+                <p className="text-charcoal-500 text-sm leading-relaxed max-w-sm mb-6">
+                  Merci pour votre message. Notre équipe vous
                   contactera très prochainement pour discuter de votre projet.
                 </p>
+                <button
+                  onClick={() => setSubmitted(false)}
+                  className="text-gold-500 hover:text-gold-600 font-medium text-sm"
+                >
+                  Envoyer un autre message
+                </button>
               </div>
             ) : (
               <form
                 onSubmit={handleSubmit}
                 className="bg-white border border-stone-100 shadow-sm p-8 space-y-6"
               >
+                {error && (
+                  <div className="bg-red-50 border border-red-200 rounded p-4 flex items-start gap-3">
+                    <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                    <p className="text-red-700 text-sm">{error}</p>
+                  </div>
+                )}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label className="block font-sans text-xs tracking-widest uppercase text-charcoal-400 mb-2">
@@ -161,7 +211,7 @@ export default function Contact() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="+33 6 00 00 00 00"
+                      placeholder="+33 6 66 37 75 26"
                       className="w-full border border-stone-200 px-4 py-3 text-sm text-charcoal-700 focus:outline-none focus:border-gold-400 transition-colors bg-transparent placeholder-charcoal-300"
                     />
                   </div>
