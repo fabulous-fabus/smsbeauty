@@ -135,7 +135,7 @@ export default function Footer() {
                 Devis gratuit
               </button>
               <Link
-                to="/admin"
+                to="/login"
                 className="btn-gold text-xs px-6 py-3 w-full inline-flex items-center justify-center gap-2 bg-charcoal-700 hover:bg-charcoal-600 border border-gold-500 text-gold-500"
               >
                 <Settings className="w-3 h-3" />

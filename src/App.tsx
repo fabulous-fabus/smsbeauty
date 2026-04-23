@@ -11,6 +11,8 @@ import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import AdminPanel from './pages/AdminPanel';
+import LoginPage from './pages/LoginPage';
+import PrivateRoute from './components/PrivateRoute';
 
 function HomePage() {
   const [visible, setVisible] = useState(false);
@@ -51,7 +53,15 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute>
+              <AdminPanel />
+            </PrivateRoute>
+          }
+        />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
