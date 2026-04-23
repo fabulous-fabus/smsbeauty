@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ChevronUp } from 'lucide-react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -9,8 +10,9 @@ import Gallery from './components/Gallery';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import AdminPanel from './pages/AdminPanel';
 
-export default function App() {
+function HomePage() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -41,5 +43,17 @@ export default function App() {
         <ChevronUp className="w-6 h-6" />
       </button>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/admin" element={<AdminPanel />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </Router>
   );
 }

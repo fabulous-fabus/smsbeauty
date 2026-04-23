@@ -1,4 +1,5 @@
-import { Sparkles, Phone, Mail, MapPin, Instagram, Facebook } from 'lucide-react';
+import { Sparkles, Phone, Mail, MapPin, Instagram, Facebook, Settings } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const navLinks = [
   { label: 'Accueil', href: '#accueil' },
@@ -29,8 +30,8 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-6">
               <Sparkles className="w-5 h-5 text-gold-400" />
-              <span className="font-serif text-2xl tracking-widest text-white">
-                SMS<span className="text-gold-400">Beauty</span>
+              <span className="font-serif text-lg tracking-widest text-white">
+                Wedding by SMS<span className="text-gold-400">Beauty</span>
               </span>
             </div>
             <p className="text-white/50 text-sm leading-relaxed mb-6">
@@ -39,14 +40,18 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3">
               <a
-                href="#"
+                href="https://www.instagram.com/smsbeaut.y/"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Instagram"
                 className="w-9 h-9 border border-white/20 flex items-center justify-center hover:border-gold-400 hover:text-gold-400 transition-colors"
               >
                 <Instagram className="w-4 h-4" />
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/shamaliya.negafaziyana"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Facebook"
                 className="w-9 h-9 border border-white/20 flex items-center justify-center hover:border-gold-400 hover:text-gold-400 transition-colors"
               >
@@ -99,10 +104,10 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0" />
                 <a
-                  href="tel:+33600000000"
+                  href="tel:+33666377526"
                   className="text-white/50 hover:text-gold-400 font-sans text-sm transition-colors"
                 >
-                  +33 6 00 00 00 00
+                  +33 6 66 37 75 26
                 </a>
               </li>
               <li className="flex items-start gap-3">
@@ -117,7 +122,7 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0" />
                 <span className="text-white/50 font-sans text-sm">
-                  Paris & Île-de-France
+                  Hyères et Var
                 </span>
               </li>
             </ul>
@@ -140,6 +145,14 @@ export default function Footer() {
           <p className="text-white/30 font-sans text-xs">
             Fait avec passion pour vos plus beaux instants
           </p>
+          <Link
+            to="/admin"
+            className="text-white/30 hover:text-gold-400 font-sans text-xs flex items-center gap-1 transition-colors"
+            title="Espace administrateur"
+          >
+            <Settings className="w-3 h-3" />
+            Admin
+          </Link>
         </div>
       </div>
     </footer>
