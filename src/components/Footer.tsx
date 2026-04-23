@@ -127,13 +127,20 @@ export default function Footer() {
               </li>
             </ul>
 
-            <div className="mt-8">
+            <div className="mt-8 space-y-3">
               <button
                 onClick={() => scrollTo('#contact')}
-                className="btn-gold text-xs px-6 py-3"
+                className="btn-gold text-xs px-6 py-3 w-full"
               >
                 Devis gratuit
               </button>
+              <Link
+                to="/admin"
+                className="btn-gold text-xs px-6 py-3 w-full inline-flex items-center justify-center gap-2 bg-charcoal-700 hover:bg-charcoal-600 border border-gold-500 text-gold-500"
+              >
+                <Settings className="w-3 h-3" />
+                Admin
+              </Link>
             </div>
           </div>
         </div>
@@ -145,14 +152,6 @@ export default function Footer() {
           <p className="text-white/30 font-sans text-xs">
             Fait avec passion pour vos plus beaux instants
           </p>
-          <Link
-            to="/admin"
-            className="text-white/30 hover:text-gold-400 font-sans text-xs flex items-center gap-1 transition-colors"
-            title="Espace administrateur"
-          >
-            <Settings className="w-3 h-3" />
-            Admin
-          </Link>
         </div>
       </div>
     </footer>
