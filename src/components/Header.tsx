@@ -23,7 +23,11 @@ export default function Header() {
   const handleNavClick = (href: string) => {
     setMenuOpen(false);
     const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (el) {
+      const offset = 80;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -42,25 +46,23 @@ export default function Header() {
             className="flex items-center gap-2 group"
           >
             <Sparkles className="w-5 h-5 text-gold-400 group-hover:text-gold-300 transition-colors" />
-            <span className="font-serif text-2xl tracking-widest text-white">
-              SMS<span className="text-gold-400 group-hover:text-gold-300 transition-colors">Beauty</span>
+            <span className="font-serif text-xl tracking-widest text-white">
+              Wedding by <span className="text-gold-400 group-hover:text-gold-300 transition-colors">SMS</span>
             </span>
           </a>
 
-          <nav className="hidden lg:flex flex-col items-end gap-2">
-            <div className="flex items-center gap-8">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-                  className="text-white/80 hover:text-gold-400 font-sans text-sm tracking-wider uppercase transition-colors duration-200 relative group"
-                >
-                  {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-gold-400 transition-all duration-300 group-hover:w-full" />
-                </a>
-              ))}
-            </div>
+          <nav className="hidden lg:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
+                className="text-white/80 hover:text-gold-400 font-sans text-sm tracking-wider uppercase transition-colors duration-200 relative group"
+              >
+                {link.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-gold-400 transition-all duration-300 group-hover:w-full" />
+              </a>
+            ))}
             <a
               href="#contact"
               onClick={(e) => { e.preventDefault(); handleNavClick('#contact'); }}

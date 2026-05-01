@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { ChevronUp } from 'lucide-react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -10,8 +11,12 @@ import Gallery from './components/Gallery';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import CookieBanner from './components/CookieBanner';
 import AdminPanel from './pages/AdminPanel';
 import LoginPage from './pages/LoginPage';
+import ServiceDetailPage from './pages/ServiceDetailPage';
+import PhotoUploadPage from './pages/PhotoUploadPage';
+import PrivacyPage from './pages/PrivacyPage';
 import PrivateRoute from './components/PrivateRoute';
 
 function HomePage() {
@@ -21,6 +26,19 @@ function HomePage() {
     const onScroll = () => setVisible(window.scrollY > 400);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      setTimeout(() => {
+        const el = document.querySelector(hash);
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.scrollY - 320;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      }, 100);
+    }
   }, []);
 
   return (
@@ -50,10 +68,14 @@ function HomePage() {
 
 export default function App() {
   return (
-    <Router>
+    <HelmetProvider>
+      <Router>
+      <CookieBanner />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/service/:serviceId" element={<ServiceDetailPage />} />
         <Route
           path="/admin"
           element={
@@ -62,8 +84,17 @@ export default function App() {
             </PrivateRoute>
           }
         />
+        <Route
+          path="/photos"
+          element={
+            <PrivateRoute>
+              <PhotoUploadPage />
+            </PrivateRoute>
+          }
+        />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-    </Router>
+      </Router>
+    </HelmetProvider>
   );
 }

@@ -17,6 +17,36 @@ interface DevisData {
   total: number;
 }
 
+const escapeHtml = (text: string): string => {
+  const map: { [key: string]: string } = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;',
+  };
+  return text.replace(/[&<>"']/g, (char) => map[char]);
+};
+
+const validateDevisInput = (data: DevisData): string | null => {
+  if (!data.clientName || !data.clientEmail) {
+    return 'Missing required fields';
+  }
+  if (data.clientName.length > 100) {
+    return 'Name too long (max 100 characters)';
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.clientEmail)) {
+    return 'Invalid email format';
+  }
+  if (!Array.isArray(data.prestations) || data.prestations.length === 0) {
+    return 'No prestations provided';
+  }
+  if (typeof data.total !== 'number' || data.total < 0) {
+    return 'Invalid total amount';
+  }
+  return null;
+};
+
 const handler: Handler = async (event, context) => {
   if (event.httpMethod !== 'POST') {
     return {
@@ -28,20 +58,24 @@ const handler: Handler = async (event, context) => {
   try {
     const data: DevisData = JSON.parse(event.body || '{}');
 
-    if (!data.clientEmail || !data.clientName) {
+    const validationError = validateDevisInput(data);
+    if (validationError) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'Missing required fields' }),
+        body: JSON.stringify({ error: validationError }),
       };
     }
 
-    // Generate prestations table HTML
+    const safeClientName = escapeHtml(data.clientName);
+    const safeService = escapeHtml(data.service);
+
+    // Generate prestations table HTML with escaped names
     const prestationsHTML = data.prestations
       .filter((p) => p.nom)
       .map(
         (p) => `
         <tr style="border-bottom: 1px solid #e5e7eb;">
-          <td style="padding: 12px; text-align: left;">${p.nom}</td>
+          <td style="padding: 12px; text-align: left;">${escapeHtml(p.nom)}</td>
           <td style="padding: 12px; text-align: center;">${p.quantite}</td>
           <td style="padding: 12px; text-align: right;">${p.prix_unitaire.toFixed(2)}€</td>
           <td style="padding: 12px; text-align: right; font-weight: bold;">${(p.quantite * p.prix_unitaire).toFixed(2)}€</td>
@@ -52,9 +86,9 @@ const handler: Handler = async (event, context) => {
 
     // Send devis email to client
     await resend.emails.send({
-      from: 'SMSBeauty <contact@smsbeauty.fr>',
+      from: 'SMSBeauty <contact@weddingbysms.fr>',
       to: data.clientEmail,
-      subject: `Votre devis SMSBeauty pour ${data.service}`,
+      subject: `Votre devis SMSBeauty pour ${safeService}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 700px; margin: 0 auto; color: #333;">
           <div style="text-align: center; padding: 20px 0; border-bottom: 2px solid #c19a6b;">
@@ -64,10 +98,10 @@ const handler: Handler = async (event, context) => {
 
           <div style="padding: 20px 0;">
             <p style="margin: 0 0 20px 0;">
-              Cher <strong>${data.clientName}</strong>,
+              Cher <strong>${safeClientName}</strong>,
             </p>
             <p style="color: #666; margin: 0 0 20px 0; line-height: 1.6;">
-              Nous vous remercions de votre demande. Veuillez trouver ci-dessous le devis détaillé pour votre service <strong>${data.service}</strong>.
+              Nous vous remercions de votre demande. Veuillez trouver ci-dessous le devis détaillé pour votre service <strong>${safeService}</strong>.
             </p>
           </div>
 
@@ -110,12 +144,8 @@ const handler: Handler = async (event, context) => {
               Pour toute question ou modification, n'hésitez pas à nous contacter.
             </p>
             <p style="margin: 0;">
-              <a href="tel:+33666377526" style="color: #c19a6b; text-decoration: none; font-weight: bold;">
-                +33 6 66 37 75 26
-              </a>
-              <span style="color: #ccc; margin: 0 10px;">•</span>
-              <a href="mailto:contact@smsbeauty.fr" style="color: #c19a6b; text-decoration: none; font-weight: bold;">
-                contact@smsbeauty.fr
+              <a href="mailto:contact@weddingbysms.fr" style="color: #c19a6b; text-decoration: none; font-weight: bold;">
+                contact@weddingbysms.fr
               </a>
             </p>
           </div>

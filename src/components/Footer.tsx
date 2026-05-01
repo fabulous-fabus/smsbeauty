@@ -113,10 +113,10 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0" />
                 <a
-                  href="mailto:contact@smsbeauty.fr"
+                  href="mailto:contact@weddingbysms.fr"
                   className="text-white/50 hover:text-gold-400 font-sans text-sm transition-colors"
                 >
-                  contact@smsbeauty.fr
+                  contact@weddingbysms.fr
                 </a>
               </li>
               <li className="flex items-start gap-3">

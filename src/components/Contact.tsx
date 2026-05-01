@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Phone, Mail, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
@@ -12,8 +12,8 @@ const contactInfo = [
   {
     icon: Mail,
     title: 'Email',
-    value: 'contact@smsbeauty.fr',
-    link: 'mailto:contact@smsbeauty.fr',
+    value: 'contact@weddingbysms.fr',
+    link: 'mailto:contact@weddingbysms.fr',
   },
   {
     icon: MapPin,
@@ -29,11 +29,30 @@ export default function Contact() {
     email: '',
     phone: '',
     service: '',
+    date: '',
+    guests: '',
+    city: '',
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const handler = (e: CustomEvent) => {
+      setFormData(prev => ({ ...prev, service: e.detail }));
+    };
+    window.addEventListener('selectService', handler as EventListener);
+    return () => window.removeEventListener('selectService', handler as EventListener);
+  }, []);
+
+  useEffect(() => {
+    const preselected = sessionStorage.getItem('preselectedService');
+    if (preselected) {
+      setFormData(prev => ({ ...prev, service: preselected }));
+      sessionStorage.removeItem('preselectedService');
+    }
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -45,37 +64,31 @@ export default function Contact() {
     setError('');
 
     try {
-      // Insert into Supabase
       const { error: dbError } = await supabase.from('devis').insert([
         {
           nom: formData.name,
           email: formData.email,
           telephone: formData.phone,
           service: formData.service,
-          message: formData.message,
+          message: `Date : ${formData.date || 'Non précisée'}\nNombre de personnes : ${formData.guests || 'Non précisé'}\nVille : ${formData.city || 'Non précisée'}\n\n${formData.message}`,
           statut: 'en_attente',
         },
       ]);
 
       if (dbError) throw new Error(dbError.message);
 
-      // Send email via Netlify function (ignore in dev if not available)
       try {
-        const response = await fetch('/.netlify/functions/send-email', {
+        await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData),
         });
-
-        if (!response.ok && response.status !== 404) {
-          console.warn('Email notification failed');
-        }
       } catch (emailErr) {
-        console.warn('Netlify functions not available in dev mode');
+        console.warn('Erreur email:', emailErr);
       }
 
       setSubmitted(true);
-      setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+      setFormData({ name: '', email: '', phone: '', service: '', date: '', guests: '', city: '', message: '' });
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
@@ -90,7 +103,7 @@ export default function Contact() {
           <p className="text-gold-500 font-sans text-xs tracking-[0.3em] uppercase mb-4">
             Parlons de votre projet
           </p>
-          <h2 className="section-title">Contactez-Nous</h2>
+          <h2 className="section-title">Discutons de votre événement</h2>
           <div className="gold-divider mt-6 mb-8" />
           <p className="section-subtitle">
             Votre événement mérite toute notre attention. Décrivez-nous votre projet et nous
@@ -135,32 +148,39 @@ export default function Contact() {
 
             <div className="mt-12 bg-charcoal-800 p-8">
               <p className="font-serif italic text-lg text-gold-300 leading-snug mb-4">
-                "Faites confiance à SMSBeauty pour transformer votre vision en réalité."
+                "Faites confiance à Wedding by SMS pour transformer votre vision en réalité."
               </p>
               <div className="h-px w-8 bg-gold-500" />
             </div>
           </div>
 
           <div className="lg:col-span-3">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-px flex-1 bg-gold-300" />
+              <span className="text-gold-500 font-sans text-xs tracking-[0.3em] uppercase">Devis gratuit</span>
+              <div className="h-px flex-1 bg-gold-300" />
+            </div>
+
             {submitted ? (
               <div className="bg-white border border-stone-100 shadow-sm p-12 flex flex-col items-center justify-center text-center min-h-96">
                 <CheckCircle className="w-16 h-16 text-gold-500 mb-6" />
                 <h3 className="font-serif text-2xl text-charcoal-800 mb-3">
-                  Message envoyé !
+                  Demande envoyée !
                 </h3>
                 <p className="text-charcoal-500 text-sm leading-relaxed max-w-sm mb-6">
-                  Merci pour votre message. Notre équipe vous
+                  Merci pour votre demande. Notre équipe vous
                   contactera très prochainement pour discuter de votre projet.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
                   className="text-gold-500 hover:text-gold-600 font-medium text-sm"
                 >
-                  Envoyer un autre message
+                  Envoyer une autre demande
                 </button>
               </div>
             ) : (
               <form
+                id="contact-form"
                 onSubmit={handleSubmit}
                 className="bg-white border border-stone-100 shadow-sm p-8 space-y-6"
               >
@@ -170,6 +190,7 @@ export default function Contact() {
                     <p className="text-red-700 text-sm">{error}</p>
                   </div>
                 )}
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label className="block font-sans text-xs tracking-widest uppercase text-charcoal-400 mb-2">
@@ -181,7 +202,8 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      placeholder="Votre nom"
+                      placeholder="Ex: Jean Dupont"
+                      autoComplete="name"
                       className="w-full border border-stone-200 px-4 py-3 text-sm text-charcoal-700 focus:outline-none focus:border-gold-400 transition-colors bg-transparent placeholder-charcoal-300"
                     />
                   </div>
@@ -195,7 +217,8 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      placeholder="votre@email.fr"
+                      placeholder="Ex: jean.dupont@email.fr"
+                      autoComplete="email"
                       className="w-full border border-stone-200 px-4 py-3 text-sm text-charcoal-700 focus:outline-none focus:border-gold-400 transition-colors bg-transparent placeholder-charcoal-300"
                     />
                   </div>
@@ -204,14 +227,16 @@ export default function Contact() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label className="block font-sans text-xs tracking-widest uppercase text-charcoal-400 mb-2">
-                      Téléphone
+                      Téléphone *
                     </label>
                     <input
                       type="tel"
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="+33 6 66 37 75 26"
+                      required
+                      placeholder="Ex: +33 6 12 34 56 78"
+                      autoComplete="tel"
                       className="w-full border border-stone-200 px-4 py-3 text-sm text-charcoal-700 focus:outline-none focus:border-gold-400 transition-colors bg-transparent placeholder-charcoal-300"
                     />
                   </div>
@@ -226,7 +251,7 @@ export default function Contact() {
                       required
                       className="w-full border border-stone-200 px-4 py-3 text-sm text-charcoal-700 focus:outline-none focus:border-gold-400 transition-colors bg-transparent appearance-none"
                     >
-                      <option value="">Sélectionner...</option>
+                      <option value="">-- Choisir un service --</option>
                       <option>Traiteur oriental</option>
                       <option>Location de robe de soirée</option>
                       <option>Vente de robe de soirée</option>
@@ -234,6 +259,53 @@ export default function Contact() {
                       <option>Forfait complet</option>
                     </select>
                   </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block font-sans text-xs tracking-widest uppercase text-charcoal-400 mb-2">
+                      Date de l'événement *
+                    </label>
+                    <input
+                      type="date"
+                      name="date"
+                      value={formData.date}
+                      onChange={handleChange}
+                      required
+                      className="w-full border border-stone-200 px-4 py-3 text-sm text-charcoal-700 focus:outline-none focus:border-gold-400 transition-colors bg-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-sans text-xs tracking-widest uppercase text-charcoal-400 mb-2">
+                      Nombre de personnes {['Traiteur oriental', 'Décoration événementielle', 'Forfait complet'].includes(formData.service) ? '*' : ''}
+                    </label>
+                    <input
+                      type="number"
+                      name="guests"
+                      value={formData.guests}
+                      onChange={handleChange}
+                      required={['Traiteur oriental', 'Décoration événementielle', 'Forfait complet'].includes(formData.service)}
+                      min="1"
+                      placeholder="Ex: 100"
+                      className="w-full border border-stone-200 px-4 py-3 text-sm text-charcoal-700 focus:outline-none focus:border-gold-400 transition-colors bg-transparent placeholder-charcoal-300"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block font-sans text-xs tracking-widest uppercase text-charcoal-400 mb-2">
+                    Ville / Lieu de l'événement *
+                  </label>
+                  <input
+                    type="text"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleChange}
+                    required
+                    placeholder="Ex: Hyères, Toulon, Nice..."
+                    autoComplete="off"
+                    className="w-full border border-stone-200 px-4 py-3 text-sm text-charcoal-700 focus:outline-none focus:border-gold-400 transition-colors bg-transparent placeholder-charcoal-300"
+                  />
                 </div>
 
                 <div>
@@ -245,8 +317,8 @@ export default function Contact() {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows={5}
-                    placeholder="Décrivez votre événement, la date, le nombre de personnes..."
+                    rows={4}
+                    placeholder="Décrivez votre événement, vos préférences, vos questions..."
                     className="w-full border border-stone-200 px-4 py-3 text-sm text-charcoal-700 focus:outline-none focus:border-gold-400 transition-colors bg-transparent resize-none placeholder-charcoal-300"
                   />
                 </div>

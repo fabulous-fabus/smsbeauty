@@ -1,0 +1,7 @@
+# Supabase configuration
+
+[project]
+functions_path = "functions"
+
+[functions."send-devis-email"]
+verify_jwt = false

@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -10,6 +11,8 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
+  useEffect(() => { document.title = 'Connexion Admin – Wedding by SMS'; }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,7 +42,13 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-charcoal-900 to-charcoal-800 flex items-center justify-center px-6">
+    <>
+      <SEOHead
+        title="Connexion Admin – Wedding by SMS"
+        description="Espace administrateur Wedding by SMS"
+        noindex={true}
+      />
+      <div className="min-h-screen bg-gradient-to-br from-charcoal-900 to-charcoal-800 flex items-center justify-center px-6">
       <div className="w-full max-w-md">
         <div className="bg-white rounded-lg shadow-2xl p-8">
           {/* Header */}
@@ -64,8 +73,9 @@ export default function LoginPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@smsbeauty.fr"
+                placeholder="admin@weddingbysms.fr"
                 required
+                autoComplete="email"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-200 transition-colors text-charcoal-700"
               />
             </div>
@@ -81,6 +91,7 @@ export default function LoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   required
+                  autoComplete="current-password"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-200 transition-colors text-charcoal-700"
                 />
                 <button
@@ -121,6 +132,7 @@ export default function LoginPage() {
           </p>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

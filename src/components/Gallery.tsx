@@ -2,39 +2,27 @@ import { useEffect, useRef, useState } from 'react';
 
 const galleryItems = [
   {
-    image: 'https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: '/photo-hero.jpg',
+    category: 'Nos Événements',
+    label: 'Ambiance de fête',
+    tall: false,
+  },
+  {
+    image: '/notre-histoire.jpg',
+    category: 'Notre Histoire',
+    label: 'Qui nous sommes',
+    tall: false,
+  },
+  {
+    image: '/tajine.jpg',
     category: 'Traiteur Oriental',
-    label: 'Table de fête orientale',
-    tall: true,
-  },
-  {
-    image: 'https://images.pexels.com/photos/1457983/pexels-photo-1457983.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'Robes de Soirée',
-    label: 'Robe de soirée élégante',
+    label: 'Saveurs authentiques',
     tall: false,
   },
   {
-    image: 'https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: '/decoration.jpg',
     category: 'Décoration',
-    label: 'Décoration mariage',
-    tall: false,
-  },
-  {
-    image: 'https://images.pexels.com/photos/5410400/pexels-photo-5410400.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'Traiteur Oriental',
-    label: 'Buffet oriental',
-    tall: false,
-  },
-  {
-    image: 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'Décoration',
-    label: 'Ambiance soirée',
-    tall: true,
-  },
-  {
-    image: 'https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'Robes de Soirée',
-    label: 'Collection exclusive',
+    label: 'Créativité et élégance',
     tall: false,
   },
 ];
@@ -64,7 +52,7 @@ function GalleryItem({ item, index }: { item: typeof galleryItems[0]; index: num
         src={item.image}
         alt={item.label}
         className={`w-full object-cover transition-transform duration-700 group-hover:scale-110 ${
-          item.tall ? 'h-full min-h-[400px]' : 'h-56'
+          item.tall ? 'h-full min-h-[400px]' : 'h-64'
         }`}
       />
       <div className="absolute inset-0 bg-charcoal-900/0 group-hover:bg-charcoal-900/60 transition-all duration-400" />
@@ -94,7 +82,7 @@ export default function Gallery() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 auto-rows-56">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-64">
           {galleryItems.map((item, index) => (
             <GalleryItem key={item.label} item={item} index={index} />
           ))}

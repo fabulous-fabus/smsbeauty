@@ -1,7 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
-import { Quote, Star } from 'lucide-react';
+import { Quote, Star, ChevronLeft, ChevronRight, User } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
-const testimonials = [
+interface Review {
+  id: string;
+  nom: string;
+  texte: string;
+  note: number;
+  created_at: string;
+}
+
+const defaultTestimonials = [
   {
     name: 'Yasmine B.',
     event: 'Mariage — Juin 2024',
@@ -25,7 +34,7 @@ const testimonials = [
   },
 ];
 
-function TestimonialCard({ testimonial, index }: { testimonial: typeof testimonials[0]; index: number }) {
+function TestimonialCard({ testimonial, index }: { testimonial: any; index: number }) {
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -38,6 +47,12 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
     return () => observer.disconnect();
   }, []);
 
+  const rating = testimonial.note || testimonial.rating || 5;
+  const name = testimonial.nom || testimonial.name;
+  const text = testimonial.texte || testimonial.text;
+  const avatar = testimonial.avatar || 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=200';
+  const event = testimonial.event || new Date(testimonial.created_at).toLocaleDateString('fr-FR');
+
   return (
     <div
       ref={ref}
@@ -49,24 +64,22 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
       <Quote className="w-10 h-10 text-gold-200 absolute top-6 right-6" />
 
       <div className="flex gap-1 mb-5">
-        {Array.from({ length: testimonial.rating }).map((_, i) => (
+        {Array.from({ length: rating }).map((_, i) => (
           <Star key={i} className="w-4 h-4 text-gold-400 fill-gold-400" />
         ))}
       </div>
 
       <p className="text-charcoal-500 text-sm leading-relaxed mb-8 italic">
-        "{testimonial.text}"
+        "{text}"
       </p>
 
       <div className="flex items-center gap-4 pt-6 border-t border-stone-100">
-        <img
-          src={testimonial.avatar}
-          alt={testimonial.name}
-          className="w-12 h-12 rounded-full object-cover"
-        />
+        <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center flex-shrink-0">
+          <User className="w-6 h-6 text-gold-500" />
+        </div>
         <div>
-          <p className="font-serif text-charcoal-800 font-medium">{testimonial.name}</p>
-          <p className="text-gold-500 font-sans text-xs tracking-wider">{testimonial.event}</p>
+          <p className="font-serif text-charcoal-800 font-medium">{name}</p>
+          <p className="text-gold-500 font-sans text-xs tracking-wider">{event}</p>
         </div>
       </div>
     </div>
@@ -74,6 +87,38 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
 }
 
 export default function Testimonials() {
+  const [testimonials, setTestimonials] = useState<any[]>(defaultTestimonials);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    loadReviews();
+  }, []);
+
+  const loadReviews = async () => {
+    const { data } = await supabase
+      .from('reviews')
+      .select('*')
+      .eq('affiche', true)
+      .order('created_at', { ascending: false });
+
+    if (data && data.length > 0) {
+      setTestimonials(data);
+    }
+  };
+
+  const itemsPerPage = 3;
+  const maxIndex = Math.max(0, testimonials.length - itemsPerPage);
+
+  const handlePrev = () => {
+    setCurrentIndex(Math.max(0, currentIndex - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex(Math.min(maxIndex, currentIndex + 1));
+  };
+
+  const visibleTestimonials = testimonials.slice(currentIndex, currentIndex + itemsPerPage);
+
   return (
     <section id="temoignages" className="py-28 bg-charcoal-900 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
@@ -95,10 +140,64 @@ export default function Testimonials() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <TestimonialCard key={testimonial.name} testimonial={testimonial} index={index} />
-          ))}
+        <div className="relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {visibleTestimonials.map((testimonial, index) => (
+              <TestimonialCard key={testimonial.id || testimonial.name} testimonial={testimonial} index={index} />
+            ))}
+          </div>
+
+          {/* Navigation Buttons */}
+          {testimonials.length > itemsPerPage && (
+            <>
+              <button
+                onClick={handlePrev}
+                disabled={currentIndex === 0}
+                className="absolute -left-6 top-1/2 -translate-y-1/2 p-2 rounded-full bg-gold-500 hover:bg-gold-600 disabled:bg-charcoal-700 disabled:cursor-not-allowed text-white transition-colors"
+                aria-label="Précédent"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+
+              <button
+                onClick={handleNext}
+                disabled={currentIndex >= maxIndex}
+                className="absolute -right-6 top-1/2 -translate-y-1/2 p-2 rounded-full bg-gold-500 hover:bg-gold-600 disabled:bg-charcoal-700 disabled:cursor-not-allowed text-white transition-colors"
+                aria-label="Suivant"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </>
+          )}
+        </div>
+
+        {/* Dots Indicator */}
+        {testimonials.length > itemsPerPage && (
+          <div className="flex justify-center gap-2 mt-12">
+            {Array.from({ length: Math.ceil(testimonials.length - itemsPerPage + 1) }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentIndex(i)}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  currentIndex === i ? 'bg-gold-500 w-8' : 'bg-white/30 hover:bg-white/50'
+                }`}
+                aria-label={`Aller au groupe ${i + 1}`}
+              />
+            ))}
+          </div>
+        )}
+
+        <div className="text-center mt-16">
+          <p className="text-white/70 text-sm mb-6">
+            Vous aussi, faites confiance à Wedding by SMS pour votre événement à Hyères et dans le Var.
+          </p>
+          <a
+            href="#contact"
+            onClick={(e) => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); }}
+            className="btn-gold"
+          >
+            Demander un devis gratuit
+          </a>
         </div>
       </div>
     </section>

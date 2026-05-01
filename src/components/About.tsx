@@ -2,10 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { Award, Heart, Users, Star } from 'lucide-react';
 
 const stats = [
-  { icon: Heart, value: '500+', label: 'Événements réalisés' },
-  { icon: Users, value: '1 200+', label: 'Clients satisfaits' },
-  { icon: Award, value: '10 ans', label: "D'expérience" },
-  { icon: Star, value: '98%', label: 'Taux de satisfaction' },
+  { icon: Heart, value: '150+', label: 'Événements réalisés' },
+  { icon: Users, value: '300+', label: 'Clients satisfaits' },
 ];
 
 export default function About() {
@@ -33,9 +31,9 @@ export default function About() {
           <div className="relative">
             <div className="relative z-10">
               <img
-                src="https://images.pexels.com/photos/1128318/pexels-photo-1128318.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="/histoire.jpg"
                 alt="SMSBeauty"
-                className="w-full h-[520px] object-cover"
+                className="w-full h-[480px] object-contain object-center bg-gray-50"
               />
             </div>
             <div className="absolute -bottom-6 -right-6 w-2/3 h-80 border-2 border-gold-300 z-0" />
@@ -64,21 +62,15 @@ export default function About() {
 
             <div className="space-y-5 text-charcoal-500 leading-relaxed">
               <p>
-                Fondée avec passion, <strong className="text-charcoal-700">SMSBeauty</strong> est une
-                maison de prestige dédiée à la création d'événements inoubliables. Nous croyons que
-                chaque fête, chaque mariage, chaque célébration mérite une attention particulière
-                et un soin exceptionnel.
+                Depuis plus de <strong className="text-charcoal-700">15 ans à Hyères et dans le Var</strong>, notre entreprise
+                familiale met son savoir-faire et sa passion au service de vos plus beaux moments.
+                Spécialisés dans l'organisation de mariages, nous vous accompagnons de A à Z : mise
+                en place, décoration, traiteur aux saveurs marocaines, avec une capacité d'adaptation
+                à chaque culture, chaque envie et chaque histoire.
               </p>
               <p>
-                Notre équipe de professionnels passionnés met tout son savoir-faire au service de
-                vos envies : des saveurs orientales authentiques qui éveillent les sens, des robes
-                somptueuses qui magnifient chaque silhouette, et des décorations féeriques qui
-                transforment les lieux en véritables écrins.
-              </p>
-              <p>
-                Avec <strong className="text-charcoal-700">plus de 10 ans d'expérience</strong>, nous
-                avons accompagné des centaines de familles dans leurs plus beaux souvenirs, en
-                apportant toujours ce supplément d'âme qui fait la différence.
+                Parce que chaque mariage est unique, nous créons des événements à votre image, avec
+                authenticité et élégance.
               </p>
             </div>
 

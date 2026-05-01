@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { ArrowLeft, Edit2, Check, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Edit2, Check, AlertCircle, MessageSquare, Image, Trash2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEOHead from '../components/SEOHead';
+import ReviewsManager from '../components/ReviewsManager';
+import PhotoUploadPage from './PhotoUploadPage';
 
 interface Devis {
   id: string;
@@ -31,6 +34,9 @@ export default function AdminPanel() {
   ]);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [activeTab, setActiveTab] = useState<'devis' | 'photos' | 'reviews'>('devis');
+
+  useEffect(() => { document.title = 'Admin – Wedding by SMS'; }, []);
 
   useEffect(() => {
     loadDevis();
@@ -70,6 +76,16 @@ export default function AdminPanel() {
 
   const calculateGrandTotal = () => {
     return prestations.reduce((sum, p) => sum + calculateTotal(p), 0);
+  };
+
+  const deleteDevis = async (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!confirm('Supprimer ce devis définitivement ?')) return;
+    const { error } = await supabase.from('devis').delete().eq('id', id);
+    if (!error) {
+      if (selectedDevis?.id === id) setSelectedDevis(null);
+      loadDevis();
+    }
   };
 
   const submitResponse = async () => {
@@ -136,16 +152,61 @@ export default function AdminPanel() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <nav className="bg-charcoal-800 text-white px-6 py-4 flex items-center justify-between">
-        <h1 className="text-2xl font-serif">Gestion des Devis</h1>
+    <>
+      <SEOHead
+        title="Admin – Wedding by SMS"
+        description="Panneau administrateur"
+        noindex={true}
+      />
+      <div className="min-h-screen bg-gray-50">
+        <nav className="bg-charcoal-800 text-white px-6 py-4 flex items-center justify-between">
+        <h1 className="text-2xl font-serif">Panneau Admin</h1>
         <Link to="/" className="flex items-center gap-2 hover:text-gold-500">
           <ArrowLeft className="w-4 h-4" />
           Accueil
         </Link>
       </nav>
 
+      {/* Tabs */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-6 flex gap-8">
+          <button
+            onClick={() => setActiveTab('devis')}
+            className={`py-4 px-2 font-medium border-b-2 transition-colors ${
+              activeTab === 'devis'
+                ? 'border-gold-500 text-gold-600'
+                : 'border-transparent text-charcoal-600 hover:text-charcoal-800'
+            }`}
+          >
+            Gestion des Devis
+          </button>
+          <button
+            onClick={() => setActiveTab('photos')}
+            className={`py-4 px-2 font-medium border-b-2 transition-colors flex items-center gap-2 ${
+              activeTab === 'photos'
+                ? 'border-gold-500 text-gold-600'
+                : 'border-transparent text-charcoal-600 hover:text-charcoal-800'
+            }`}
+          >
+            <Image className="w-4 h-4" />
+            Gérer les Photos
+          </button>
+          <button
+            onClick={() => setActiveTab('reviews')}
+            className={`py-4 px-2 font-medium border-b-2 transition-colors flex items-center gap-2 ${
+              activeTab === 'reviews'
+                ? 'border-gold-500 text-gold-600'
+                : 'border-transparent text-charcoal-600 hover:text-charcoal-800'
+            }`}
+          >
+            <MessageSquare className="w-4 h-4" />
+            Avis Clients
+          </button>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-6 py-8">
+        {activeTab === 'devis' ? (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Devis List */}
           <div className="lg:col-span-1">
@@ -155,22 +216,22 @@ export default function AdminPanel() {
               </div>
               <div className="divide-y max-h-96 overflow-y-auto">
                 {devis.map((d) => (
-                  <button
+                  <div
                     key={d.id}
                     onClick={() => {
                       setSelectedDevis(d);
                       setPrestations([{ nom: '', quantite: 1, prix_unitaire: 0 }]);
                     }}
-                    className={`w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors ${
+                    className={`w-full text-left px-6 py-4 hover:bg-gray-50 transition-colors cursor-pointer relative ${
                       selectedDevis?.id === d.id ? 'bg-gold-50 border-l-4 border-gold-500' : ''
                     }`}
                   >
-                    <div className="font-medium text-charcoal-800">{d.nom}</div>
+                    <div className="font-medium text-charcoal-800 pr-8">{d.nom}</div>
                     <div className="text-sm text-charcoal-500">{d.service}</div>
                     <div className="text-xs text-charcoal-400 mt-2">
                       {new Date(d.created_at).toLocaleDateString('fr-FR')}
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-2 flex items-center justify-between">
                       <span
                         className={`inline-block px-2 py-1 rounded text-xs font-medium ${
                           d.statut === 'en_attente'
@@ -182,8 +243,15 @@ export default function AdminPanel() {
                       >
                         {d.statut}
                       </span>
+                      <button
+                        onClick={(e) => deleteDevis(d.id, e)}
+                        className="flex items-center gap-1 text-xs text-red-500 hover:text-red-700 font-medium"
+                      >
+                        <Trash2 className="w-3 h-3" />
+                        Supprimer
+                      </button>
                     </div>
-                  </button>
+                  </div>
                 ))}
               </div>
             </div>
@@ -273,6 +341,7 @@ export default function AdminPanel() {
                                 placeholder="Nom de la prestation"
                                 value={p.nom}
                                 onChange={(e) => updatePrestation(idx, 'nom', e.target.value)}
+                                autoComplete="on"
                                 className="w-full px-2 py-1 border border-gray-300 rounded text-charcoal-700"
                               />
                             </td>
@@ -284,6 +353,7 @@ export default function AdminPanel() {
                                 onChange={(e) =>
                                   updatePrestation(idx, 'quantite', parseInt(e.target.value) || 1)
                                 }
+                                autoComplete="off"
                                 className="w-16 px-2 py-1 border border-gray-300 rounded text-center text-charcoal-700"
                               />
                             </td>
@@ -291,11 +361,12 @@ export default function AdminPanel() {
                               <input
                                 type="number"
                                 min="0"
-                                step="0.01"
+                                step="10"
                                 value={p.prix_unitaire}
                                 onChange={(e) =>
                                   updatePrestation(idx, 'prix_unitaire', parseFloat(e.target.value) || 0)
                                 }
+                                autoComplete="off"
                                 className="w-20 px-2 py-1 border border-gray-300 rounded text-right text-charcoal-700"
                               />
                               €
@@ -363,7 +434,13 @@ export default function AdminPanel() {
             )}
           </div>
         </div>
+        ) : activeTab === 'photos' ? (
+        <PhotoUploadPage hideHeader={true} />
+        ) : (
+        <ReviewsManager />
+        )}
       </div>
-    </div>
+      </div>
+    </>
   );
 }
