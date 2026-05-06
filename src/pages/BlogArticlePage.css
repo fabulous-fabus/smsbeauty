@@ -77,3 +77,20 @@
   font-style: italic;
   color: #404040;
 }
+
+.btn-cta {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: #b8952a;
+  color: white !important;
+  text-decoration: none !important;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-cta:hover {
+  background-color: #9a7820;
+  transform: translateY(-2px);
+}

@@ -8,6 +8,23 @@ import SEOHead from '../components/SEOHead';
 import Footer from '../components/Footer';
 import './BlogArticlePage.css';
 
+// Configure marked to handle CTA buttons
+const renderer = new marked.Renderer();
+const originalLink = renderer.link;
+renderer.link = function(token: any) {
+  const text = token.text;
+  const href = token.href;
+
+  // Detect CTA pattern: [CTA: text](url)
+  if (text.startsWith('CTA: ')) {
+    const ctaText = text.replace('CTA: ', '');
+    return `<div style="text-align: center; margin: 2rem 0;"><a href="${href}" class="btn-cta">${ctaText}</a></div>`;
+  }
+
+  return originalLink.call(this, token);
+};
+marked.use({ renderer });
+
 const CATEGORY_LABELS: Record<string, string> = {
   presentation: 'Présentation',
   decoration: 'Décoration',
