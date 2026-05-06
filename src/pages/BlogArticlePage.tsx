@@ -25,6 +25,57 @@ renderer.link = function(token: any) {
 };
 marked.use({ renderer });
 
+// Post-process HTML to handle FAQ format (? Question\n! Réponse)
+function processFAQ(html: string): string {
+  // Replace paragraphs containing FAQ pattern with styled accordion
+  const faqParagraphPattern = /<p>([\s\S]*?\? [\s\S]*?\! [\s\S]*?)<\/p>/g;
+
+  return html.replace(faqParagraphPattern, (match, content) => {
+    // Check if this paragraph contains FAQ pattern
+    if (!content.includes('? ') || !content.includes('! ')) {
+      return match;
+    }
+
+    // Extract Q&A pairs from the content
+    // Pattern: ? Question ? followed by ! Answer
+    const lines = content.split('\n').map(line => line.trim()).filter(line => line);
+    const faqs: Array<{ question: string; answer: string }> = [];
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      if (line.startsWith('? ')) {
+        // Extract question (remove leading ? and trailing ?)
+        const question = line.replace(/^\? /, '').replace(/\s\?$/, '');
+
+        // Find the corresponding answer (next line starting with !)
+        if (i + 1 < lines.length && lines[i + 1].startsWith('! ')) {
+          const answer = lines[i + 1].replace(/^! /, '');
+          faqs.push({ question, answer });
+          i++; // Skip the answer line
+        }
+      }
+    }
+
+    if (faqs.length === 0) {
+      return match; // No FAQ found, return original
+    }
+
+    // Generate FAQ HTML
+    const faqHtml = `<div class="blog-faq">
+      ${faqs.map((faq, idx) => `<div class="faq-item">
+        <input type="checkbox" id="faq-${idx}" class="faq-toggle" />
+        <label for="faq-${idx}" class="faq-question">
+          <span>${faq.question}</span>
+          <span class="faq-icon">+</span>
+        </label>
+        <div class="faq-answer">${faq.answer}</div>
+      </div>`).join('')}
+    </div>`;
+
+    return faqHtml;
+  });
+}
+
 const CATEGORY_LABELS: Record<string, string> = {
   presentation: 'Présentation',
   decoration: 'Décoration',
@@ -158,7 +209,7 @@ export default function BlogArticlePage() {
 
           <div
             className="blog-content"
-            dangerouslySetInnerHTML={{ __html: marked(article.contenu) }}
+            dangerouslySetInnerHTML={{ __html: processFAQ(String(marked(article.contenu))) }}
           />
 
           <div className="border-t border-stone-200 pt-8 mt-12">
