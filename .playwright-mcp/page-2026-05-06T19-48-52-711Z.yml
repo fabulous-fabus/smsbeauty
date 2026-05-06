@@ -1,0 +1,112 @@
+- generic [ref=e2]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - heading "Paramètres des Cookies" [level=3] [ref=e7]
+        - paragraph [ref=e8]: Nous utilisons Google Analytics pour améliorer votre expérience. Les cookies analytiques nous aident à comprendre comment vous utilisez notre site.
+        - paragraph [ref=e9]:
+          - link "En savoir plus sur notre politique de confidentialité" [ref=e10] [cursor=pointer]:
+            - /url: /privacy
+      - button "Fermer" [ref=e11] [cursor=pointer]:
+        - img [ref=e12]
+    - generic [ref=e15]:
+      - button "Accepter" [ref=e16] [cursor=pointer]
+      - button "Refuser" [ref=e17] [cursor=pointer]
+  - generic [ref=e479]:
+    - generic [ref=e481]:
+      - link "Retour à l'accueil" [ref=e482] [cursor=pointer]:
+        - /url: /
+        - img [ref=e483]
+        - text: Retour à l'accueil
+      - paragraph [ref=e485]: Wedding by SMS · Hyères
+      - heading "Notre Blog" [level=1] [ref=e486]
+      - paragraph [ref=e487]: Inspirations · Conseils · Tendances mariage
+    - generic [ref=e488]:
+      - generic [ref=e489]:
+        - button "Tous les articles" [ref=e490] [cursor=pointer]
+        - button "Présentation" [ref=e491] [cursor=pointer]
+        - button "Décoration" [ref=e492] [cursor=pointer]
+        - button "Traiteur" [ref=e493] [cursor=pointer]
+        - button "Robes de Soirée" [ref=e494] [cursor=pointer]
+      - article [ref=e496]:
+        - link "SMS" [ref=e497] [cursor=pointer]:
+          - /url: /blog/traiteur-oriental-dans-le-var
+          - generic [ref=e499]: SMS
+        - generic [ref=e500]:
+          - generic [ref=e501]:
+            - generic [ref=e502]: Traiteur
+            - generic [ref=e503]:
+              - img [ref=e504]
+              - text: 2 mai 2026
+          - 'link "Traiteur Oriental dans le Var : le bon prestataire pour votre mariage ?" [ref=e506] [cursor=pointer]':
+            - /url: /blog/traiteur-oriental-dans-le-var
+            - 'heading "Traiteur Oriental dans le Var : le bon prestataire pour votre mariage ?" [level=2] [ref=e507]'
+          - paragraph [ref=e508]: "Traiteur Oriental dans le Var : comment choisir le bon prestataire pour votre mariage ? Vous cherchez un traiteur oriental dans le Var pour votre mariage ?"
+          - link "Lire la suite →" [ref=e509] [cursor=pointer]:
+            - /url: /blog/traiteur-oriental-dans-le-var
+    - contentinfo [ref=e510]:
+      - generic [ref=e511]:
+        - generic [ref=e512]:
+          - generic [ref=e513]:
+            - generic [ref=e514]:
+              - img [ref=e515]
+              - generic [ref=e517]: Wedding by SMSBeauty
+            - paragraph [ref=e518]: Votre partenaire de confiance pour des événements d'exception. Traiteur, mode et décoration réunis sous un même toit de prestige.
+            - generic [ref=e519]:
+              - link "Instagram" [ref=e520] [cursor=pointer]:
+                - /url: https://www.instagram.com/smsbeaut.y/
+                - img [ref=e521]
+              - link "Facebook" [ref=e524] [cursor=pointer]:
+                - /url: https://www.facebook.com/shamaliya.negafaziyana
+                - img [ref=e525]
+          - generic [ref=e527]:
+            - heading "Navigation" [level=4] [ref=e528]
+            - list [ref=e529]:
+              - listitem [ref=e530]:
+                - button "Accueil" [ref=e531] [cursor=pointer]
+              - listitem [ref=e532]:
+                - button "Services" [ref=e533] [cursor=pointer]
+              - listitem [ref=e534]:
+                - button "À Propos" [ref=e535] [cursor=pointer]
+              - listitem [ref=e536]:
+                - button "Galerie" [ref=e537] [cursor=pointer]
+              - listitem [ref=e538]:
+                - button "Témoignages" [ref=e539] [cursor=pointer]
+              - listitem [ref=e540]:
+                - button "Contact" [ref=e541] [cursor=pointer]
+          - generic [ref=e542]:
+            - heading "Nos Services" [level=4] [ref=e543]
+            - list [ref=e544]:
+              - listitem [ref=e545]:
+                - button "Traiteur oriental" [ref=e546] [cursor=pointer]
+              - listitem [ref=e547]:
+                - button "Location de robes" [ref=e548] [cursor=pointer]
+              - listitem [ref=e549]:
+                - button "Vente de robes" [ref=e550] [cursor=pointer]
+              - listitem [ref=e551]:
+                - button "Décoration événementielle" [ref=e552] [cursor=pointer]
+              - listitem [ref=e553]:
+                - button "Forfait mariage complet" [ref=e554] [cursor=pointer]
+          - generic [ref=e555]:
+            - heading "Coordonnées" [level=4] [ref=e556]
+            - list [ref=e557]:
+              - listitem [ref=e558]:
+                - img [ref=e559]
+                - link "+33 6 66 37 75 26" [ref=e561] [cursor=pointer]:
+                  - /url: tel:+33666377526
+              - listitem [ref=e562]:
+                - img [ref=e563]
+                - link "contact@weddingbysms.fr" [ref=e566] [cursor=pointer]:
+                  - /url: mailto:contact@weddingbysms.fr
+              - listitem [ref=e567]:
+                - img [ref=e568]
+                - generic [ref=e571]: Hyères et Var
+            - generic [ref=e572]:
+              - button "Devis gratuit" [ref=e573] [cursor=pointer]
+              - link "Admin" [ref=e574] [cursor=pointer]:
+                - /url: /login
+                - img [ref=e575]
+                - text: Admin
+        - generic [ref=e578]:
+          - paragraph [ref=e579]: © 2026 SMSBeauty. Tous droits réservés.
+          - paragraph [ref=e580]: Fait avec passion pour vos plus beaux instants

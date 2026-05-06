@@ -1,0 +1,20 @@
+- generic [ref=e2]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - heading "Paramètres des Cookies" [level=3] [ref=e7]
+        - paragraph [ref=e8]: Nous utilisons Google Analytics pour améliorer votre expérience. Les cookies analytiques nous aident à comprendre comment vous utilisez notre site.
+        - paragraph [ref=e9]:
+          - link "En savoir plus sur notre politique de confidentialité" [ref=e10] [cursor=pointer]:
+            - /url: /privacy
+      - button "Fermer" [ref=e11] [cursor=pointer]:
+        - img [ref=e12]
+    - generic [ref=e15]:
+      - button "Accepter" [ref=e16] [cursor=pointer]
+      - button "Refuser" [ref=e17] [cursor=pointer]
+  - generic [ref=e18]:
+    - generic [ref=e19]: Contactez-nous sur WhatsApp
+    - link "Contactez-nous sur WhatsApp" [ref=e20] [cursor=pointer]:
+      - /url: https://wa.me/33666377526?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20vos%20services
+      - img [ref=e21]
+  - generic [ref=e24]: Chargement...

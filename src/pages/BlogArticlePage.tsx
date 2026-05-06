@@ -27,18 +27,28 @@ marked.use({ renderer });
 
 // Post-process HTML to handle FAQ format (? Question\n! Réponse)
 function processFAQ(html: string): string {
-  // Replace paragraphs containing FAQ pattern with styled accordion
-  const faqParagraphPattern = /<p>([\s\S]*?\? [\s\S]*?\! [\s\S]*?)<\/p>/g;
+  // Match paragraphs that START with "?" (FAQ format)
+  // This regex ensures we only process paragraphs beginning with a question mark
+  const faqParagraphPattern = /<p>\s*\?(?:[\s\S]*?<br\s*\/?>\s*)*[\s\S]*?<\/p>/g;
 
-  return html.replace(faqParagraphPattern, (match, content) => {
+  return html.replace(faqParagraphPattern, (match) => {
+    // Extract content, removing HTML tags
+    const content = match
+      .replace(/<p>/g, '')
+      .replace(/<\/p>/g, '')
+      .replace(/<br\s*\/?>/gi, '\n')
+      .trim();
+
     // Check if this paragraph contains FAQ pattern
     if (!content.includes('? ') || !content.includes('! ')) {
       return match;
     }
 
-    // Extract Q&A pairs from the content
-    // Pattern: ? Question ? followed by ! Answer
-    const lines = content.split('\n').map(line => line.trim()).filter(line => line);
+    const lines = content
+      .replace(/<br\s*\/?>/gi, '\n')
+      .split('\n')
+      .map(line => line.trim())
+      .filter(line => line);
     const faqs: Array<{ question: string; answer: string }> = [];
 
     let i = 0;

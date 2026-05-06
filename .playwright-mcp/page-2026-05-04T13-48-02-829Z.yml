@@ -1,0 +1,102 @@
+- generic [ref=e2]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - heading "Paramètres des Cookies" [level=3] [ref=e7]
+        - paragraph [ref=e8]: Nous utilisons Google Analytics pour améliorer votre expérience. Les cookies analytiques nous aident à comprendre comment vous utilisez notre site.
+        - paragraph [ref=e9]:
+          - link "En savoir plus sur notre politique de confidentialité" [ref=e10] [cursor=pointer]:
+            - /url: /privacy
+      - button "Fermer" [ref=e11] [cursor=pointer]:
+        - img [ref=e12]
+    - generic [ref=e15]:
+      - button "Accepter" [ref=e16] [cursor=pointer]
+      - button "Refuser" [ref=e17] [cursor=pointer]
+  - generic [ref=e18]:
+    - generic [ref=e19]: Contactez-nous sur WhatsApp
+    - link "Contactez-nous sur WhatsApp" [ref=e20] [cursor=pointer]:
+      - /url: https://wa.me/33666377526?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20vos%20services
+      - img [ref=e21]
+  - generic [ref=e23]:
+    - generic [ref=e25]:
+      - link "Retour à l'accueil" [ref=e26] [cursor=pointer]:
+        - /url: /
+        - img [ref=e27]
+        - text: Retour à l'accueil
+      - paragraph [ref=e29]: Wedding by SMS · Hyères
+      - heading "Notre Blog" [level=1] [ref=e30]
+      - paragraph [ref=e31]: Inspirations · Conseils · Tendances mariage
+    - generic [ref=e32]:
+      - generic [ref=e33]:
+        - button "Tous les articles" [ref=e34] [cursor=pointer]
+        - button "Présentation" [ref=e35] [cursor=pointer]
+        - button "Décoration" [ref=e36] [cursor=pointer]
+        - button "Traiteur" [ref=e37] [cursor=pointer]
+        - button "Robes de Soirée" [ref=e38] [cursor=pointer]
+      - generic [ref=e39]: Chargement...
+    - contentinfo [ref=e40]:
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]:
+            - generic [ref=e44]:
+              - img [ref=e45]
+              - generic [ref=e47]: Wedding by SMSBeauty
+            - paragraph [ref=e48]: Votre partenaire de confiance pour des événements d'exception. Traiteur, mode et décoration réunis sous un même toit de prestige.
+            - generic [ref=e49]:
+              - link "Instagram" [ref=e50] [cursor=pointer]:
+                - /url: https://www.instagram.com/smsbeaut.y/
+                - img [ref=e51]
+              - link "Facebook" [ref=e54] [cursor=pointer]:
+                - /url: https://www.facebook.com/shamaliya.negafaziyana
+                - img [ref=e55]
+          - generic [ref=e57]:
+            - heading "Navigation" [level=4] [ref=e58]
+            - list [ref=e59]:
+              - listitem [ref=e60]:
+                - button "Accueil" [ref=e61] [cursor=pointer]
+              - listitem [ref=e62]:
+                - button "Services" [ref=e63] [cursor=pointer]
+              - listitem [ref=e64]:
+                - button "À Propos" [ref=e65] [cursor=pointer]
+              - listitem [ref=e66]:
+                - button "Galerie" [ref=e67] [cursor=pointer]
+              - listitem [ref=e68]:
+                - button "Témoignages" [ref=e69] [cursor=pointer]
+              - listitem [ref=e70]:
+                - button "Contact" [ref=e71] [cursor=pointer]
+          - generic [ref=e72]:
+            - heading "Nos Services" [level=4] [ref=e73]
+            - list [ref=e74]:
+              - listitem [ref=e75]:
+                - button "Traiteur oriental" [ref=e76] [cursor=pointer]
+              - listitem [ref=e77]:
+                - button "Location de robes" [ref=e78] [cursor=pointer]
+              - listitem [ref=e79]:
+                - button "Vente de robes" [ref=e80] [cursor=pointer]
+              - listitem [ref=e81]:
+                - button "Décoration événementielle" [ref=e82] [cursor=pointer]
+              - listitem [ref=e83]:
+                - button "Forfait mariage complet" [ref=e84] [cursor=pointer]
+          - generic [ref=e85]:
+            - heading "Coordonnées" [level=4] [ref=e86]
+            - list [ref=e87]:
+              - listitem [ref=e88]:
+                - img [ref=e89]
+                - link "+33 6 66 37 75 26" [ref=e91] [cursor=pointer]:
+                  - /url: tel:+33666377526
+              - listitem [ref=e92]:
+                - img [ref=e93]
+                - link "contact@weddingbysms.fr" [ref=e96] [cursor=pointer]:
+                  - /url: mailto:contact@weddingbysms.fr
+              - listitem [ref=e97]:
+                - img [ref=e98]
+                - generic [ref=e101]: Hyères et Var
+            - generic [ref=e102]:
+              - button "Devis gratuit" [ref=e103] [cursor=pointer]
+              - link "Admin" [ref=e104] [cursor=pointer]:
+                - /url: /login
+                - img [ref=e105]
+                - text: Admin
+        - generic [ref=e108]:
+          - paragraph [ref=e109]: © 2026 SMSBeauty. Tous droits réservés.
+          - paragraph [ref=e110]: Fait avec passion pour vos plus beaux instants
