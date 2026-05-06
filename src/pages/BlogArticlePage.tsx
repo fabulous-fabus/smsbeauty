@@ -44,8 +44,8 @@ function processFAQ(html: string): string {
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
       if (line.startsWith('? ')) {
-        // Extract question (remove leading ? and trailing ?)
-        const question = line.replace(/^\? /, '').replace(/\s\?$/, '');
+        // Extract question (remove leading ? but keep trailing ?)
+        const question = line.replace(/^\? /, '');
 
         // Find the corresponding answer (next line starting with !)
         if (i + 1 < lines.length && lines[i + 1].startsWith('! ')) {
