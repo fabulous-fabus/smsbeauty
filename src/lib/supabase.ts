@@ -17,3 +17,17 @@ export type DevisRow = {
   created_at: string;
   repondu_at: string | null;
 };
+
+export type BlogArticle = {
+  id: string;
+  titre: string;
+  slug: string;
+  categorie: string;
+  extrait: string;
+  contenu: string;
+  image_url: string | null;
+  video_url: string | null;
+  publie: boolean;
+  created_at: string;
+  updated_at: string;
+};

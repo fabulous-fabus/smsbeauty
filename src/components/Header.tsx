@@ -1,12 +1,20 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-const navLinks = [
+interface NavLink {
+  label: string;
+  href: string;
+  isRoute?: boolean;
+}
+
+const navLinks: NavLink[] = [
   { label: 'Accueil', href: '#accueil' },
   { label: 'Services', href: '#services' },
   { label: 'À Propos', href: '#apropos' },
   { label: 'Galerie', href: '#galerie' },
   { label: 'Témoignages', href: '#temoignages' },
+  { label: 'Blog', href: '/blog', isRoute: true },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -53,15 +61,26 @@ export default function Header() {
 
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-                className="text-white/80 hover:text-gold-400 font-sans text-sm tracking-wider uppercase transition-colors duration-200 relative group"
-              >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-gold-400 transition-all duration-300 group-hover:w-full" />
-              </a>
+              link.isRoute ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="text-white/80 hover:text-gold-400 font-sans text-sm tracking-wider uppercase transition-colors duration-200 relative group"
+                >
+                  {link.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-gold-400 transition-all duration-300 group-hover:w-full" />
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
+                  className="text-white/80 hover:text-gold-400 font-sans text-sm tracking-wider uppercase transition-colors duration-200 relative group"
+                >
+                  {link.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-gold-400 transition-all duration-300 group-hover:w-full" />
+                </a>
+              )
             ))}
             <a
               href="#contact"
@@ -86,14 +105,25 @@ export default function Header() {
         <div className="lg:hidden bg-charcoal-900/98 backdrop-blur-md border-t border-white/10 animate-fade-in">
           <div className="px-6 py-6 flex flex-col gap-5">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-                className="text-white/80 hover:text-gold-400 font-sans text-sm tracking-wider uppercase transition-colors"
-              >
-                {link.label}
-              </a>
+              link.isRoute ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-white/80 hover:text-gold-400 font-sans text-sm tracking-wider uppercase transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
+                  className="text-white/80 hover:text-gold-400 font-sans text-sm tracking-wider uppercase transition-colors"
+                >
+                  {link.label}
+                </a>
+              )
             ))}
             <a
               href="#contact"

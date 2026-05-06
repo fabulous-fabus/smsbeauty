@@ -17,6 +17,8 @@ import LoginPage from './pages/LoginPage';
 import ServiceDetailPage from './pages/ServiceDetailPage';
 import PhotoUploadPage from './pages/PhotoUploadPage';
 import PrivacyPage from './pages/PrivacyPage';
+import BlogPage from './pages/BlogPage';
+import BlogArticlePage from './pages/BlogArticlePage';
 import PrivateRoute from './components/PrivateRoute';
 
 function HomePage() {
@@ -75,6 +77,8 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog/:slug" element={<BlogArticlePage />} />
         <Route path="/service/:serviceId" element={<ServiceDetailPage />} />
         <Route
           path="/admin"

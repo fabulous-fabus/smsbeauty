@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { ArrowLeft, Edit2, Check, AlertCircle, MessageSquare, Image, Trash2 } from 'lucide-react';
+import { ArrowLeft, Edit2, Check, AlertCircle, MessageSquare, Image, Trash2, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEOHead from '../components/SEOHead';
 import ReviewsManager from '../components/ReviewsManager';
 import PhotoUploadPage from './PhotoUploadPage';
+import BlogManager from '../components/BlogManager';
 
 interface Devis {
   id: string;
@@ -34,7 +35,7 @@ export default function AdminPanel() {
   ]);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [activeTab, setActiveTab] = useState<'devis' | 'photos' | 'reviews'>('devis');
+  const [activeTab, setActiveTab] = useState<'devis' | 'photos' | 'reviews' | 'blog'>('devis');
 
   useEffect(() => { document.title = 'Admin – Wedding by SMS'; }, []);
 
@@ -201,6 +202,17 @@ export default function AdminPanel() {
           >
             <MessageSquare className="w-4 h-4" />
             Avis Clients
+          </button>
+          <button
+            onClick={() => setActiveTab('blog')}
+            className={`py-4 px-2 font-medium border-b-2 transition-colors flex items-center gap-2 ${
+              activeTab === 'blog'
+                ? 'border-gold-500 text-gold-600'
+                : 'border-transparent text-charcoal-600 hover:text-charcoal-800'
+            }`}
+          >
+            <BookOpen className="w-4 h-4" />
+            Blog
           </button>
         </div>
       </div>
@@ -436,8 +448,10 @@ export default function AdminPanel() {
         </div>
         ) : activeTab === 'photos' ? (
         <PhotoUploadPage hideHeader={true} />
-        ) : (
+        ) : activeTab === 'reviews' ? (
         <ReviewsManager />
+        ) : (
+        <BlogManager />
         )}
       </div>
       </div>
