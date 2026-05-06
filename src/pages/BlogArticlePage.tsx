@@ -41,7 +41,8 @@ function processFAQ(html: string): string {
     const lines = content.split('\n').map(line => line.trim()).filter(line => line);
     const faqs: Array<{ question: string; answer: string }> = [];
 
-    for (let i = 0; i < lines.length; i++) {
+    let i = 0;
+    while (i < lines.length) {
       const line = lines[i];
       if (line.startsWith('? ')) {
         // Extract question (remove leading ? but keep trailing ?)
@@ -51,9 +52,11 @@ function processFAQ(html: string): string {
         if (i + 1 < lines.length && lines[i + 1].startsWith('! ')) {
           const answer = lines[i + 1].replace(/^! /, '');
           faqs.push({ question, answer });
-          i++; // Skip the answer line
+          i += 2; // Skip both question and answer lines
+          continue;
         }
       }
+      i++;
     }
 
     if (faqs.length === 0) {
