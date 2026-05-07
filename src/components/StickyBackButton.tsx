@@ -8,7 +8,7 @@ interface StickyBackButtonProps {
 
 export default function StickyBackButton({ href, label }: StickyBackButtonProps) {
   return (
-    <div className="sticky top-0 z-40 bg-charcoal-800/95 backdrop-blur-md border-b border-charcoal-700 shadow-lg">
+    <div className="sticky top-0 z-[99] bg-charcoal-800/95 backdrop-blur-md border-b border-charcoal-700 shadow-lg">
       <div className="max-w-7xl mx-auto px-6 py-3">
         <Link
           to={href}
