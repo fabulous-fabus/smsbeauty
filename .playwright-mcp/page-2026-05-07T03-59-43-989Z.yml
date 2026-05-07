@@ -1,0 +1,132 @@
+- generic [ref=e2]:
+  - link "Retour aux services" [ref=e5] [cursor=pointer]:
+    - /url: /#services
+    - img [ref=e6]
+    - text: Retour aux services
+  - generic [ref=e8]:
+    - generic [ref=e10]:
+      - paragraph [ref=e11]: Wedding by SMS · Hyères
+      - heading "Traiteur Oriental" [level=1] [ref=e12]
+      - paragraph [ref=e13]: Saveurs authentiques · Cuisine maison · Devis gratuit
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - generic [ref=e16]:
+          - heading "Un traiteur oriental à votre service à Hyères" [level=2] [ref=e17]
+          - paragraph [ref=e18]:
+            - text: Depuis plus de 15 ans,
+            - strong [ref=e19]: Wedding by SMS
+            - text: régale vos convives avec une cuisine orientale authentique préparée avec passion. Tajines parfumés, couscous généreux, pastillas dorées, briwats croustillants et pâtisseries orientales — chaque plat est une invitation au voyage.
+          - paragraph [ref=e20]:
+            - text: Nous adaptons nos menus à votre événement, au nombre de vos invités et à vos envies. Cuisine 100% halal, ingrédients frais sélectionnés, présentation soignée. Nous intervenons à domicile, en salle ou en extérieur dans tout le
+            - strong [ref=e21]: Var
+            - text: .
+          - list [ref=e22]:
+            - listitem [ref=e23]:
+              - img [ref=e24]
+              - text: Buffets & banquets orientaux
+            - listitem [ref=e26]:
+              - img [ref=e27]
+              - text: Menus personnalisés
+            - listitem [ref=e29]:
+              - img [ref=e30]
+              - text: Pâtisseries et douceurs orientales
+            - listitem [ref=e32]:
+              - img [ref=e33]
+              - text: Service et installation compris
+            - listitem [ref=e35]:
+              - img [ref=e36]
+              - text: Cuisine halal certifiée
+            - listitem [ref=e38]:
+              - img [ref=e39]
+              - text: Adaptation aux allergies et régimes
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - img [ref=e43]
+            - img [ref=e45]
+            - img [ref=e47]
+            - img [ref=e49]
+            - img [ref=e51]
+          - paragraph [ref=e53]: Demandez votre devis gratuit
+          - paragraph [ref=e54]: Réponse sous 24h. Sans engagement.
+          - link "Demander un devis" [ref=e55] [cursor=pointer]:
+            - /url: /#contact-form
+          - generic [ref=e56]:
+            - generic [ref=e57]:
+              - img [ref=e58]
+              - text: Hyères et Var
+            - generic [ref=e61]:
+              - img [ref=e62]
+              - text: À partir de 20 personnes
+      - generic [ref=e67]:
+        - heading "Pour quel événement ?" [level=2] [ref=e68]
+        - generic [ref=e70]:
+          - generic [ref=e71]:
+            - heading "Mariage" [level=3] [ref=e72]
+            - paragraph [ref=e73]: Buffets grandioses ou menus assis, nous créons un festin mémorable pour votre jour J.
+          - generic [ref=e74]:
+            - heading "Fiançailles" [level=3] [ref=e75]
+            - paragraph [ref=e76]: Une soirée intime ou une grande célébration, nos saveurs orientales subliment vos fiançailles.
+          - generic [ref=e77]:
+            - heading "Anniversaire" [level=3] [ref=e78]
+            - paragraph [ref=e79]: Un anniversaire inoubliable avec des plats savoureux et une présentation raffinée.
+          - generic [ref=e80]:
+            - heading "Baptême & Circoncision" [level=3] [ref=e81]
+            - paragraph [ref=e82]: Des mets traditionnels pour célébrer ces moments de famille avec authenticité.
+          - generic [ref=e83]:
+            - heading "Soirée privée" [level=3] [ref=e84]
+            - paragraph [ref=e85]: Réception à domicile ou en salle, nous nous adaptons à votre espace et vos envies.
+          - generic [ref=e86]:
+            - heading "Événement d'entreprise" [level=3] [ref=e87]
+            - paragraph [ref=e88]: Cocktails, séminaires, repas d'affaires — une cuisine orientale qui marque les esprits.
+      - generic [ref=e89]:
+        - heading "Zone d'intervention" [level=2] [ref=e90]
+        - paragraph [ref=e92]: "Nous intervenons dans tout le département du Var et les alentours :"
+        - generic [ref=e93]:
+          - generic [ref=e94]:
+            - img [ref=e95]
+            - text: Hyères
+          - generic [ref=e98]:
+            - img [ref=e99]
+            - text: Toulon
+          - generic [ref=e102]:
+            - img [ref=e103]
+            - text: La Seyne-sur-Mer
+          - generic [ref=e106]:
+            - img [ref=e107]
+            - text: Brignoles
+          - generic [ref=e110]:
+            - img [ref=e111]
+            - text: Fréjus
+          - generic [ref=e114]:
+            - img [ref=e115]
+            - text: Saint-Tropez
+          - generic [ref=e118]:
+            - img [ref=e119]
+            - text: Draguignan
+          - generic [ref=e122]:
+            - img [ref=e123]
+            - text: Six-Fours-les-Plages
+        - paragraph [ref=e126]: Des frais de déplacement peuvent s'appliquer selon la distance depuis Hyères.
+      - generic [ref=e127]:
+        - heading "Questions fréquentes" [level=2] [ref=e128]
+        - generic [ref=e130]:
+          - button "Quels types de cuisine proposez-vous ?" [ref=e132] [cursor=pointer]:
+            - generic [ref=e133]: Quels types de cuisine proposez-vous ?
+            - img [ref=e134]
+          - button "Pouvez-vous adapter le menu à des régimes alimentaires spécifiques ?" [ref=e137] [cursor=pointer]:
+            - generic [ref=e138]: Pouvez-vous adapter le menu à des régimes alimentaires spécifiques ?
+            - img [ref=e139]
+          - button "Quel est le nombre minimum de personnes ?" [ref=e142] [cursor=pointer]:
+            - generic [ref=e143]: Quel est le nombre minimum de personnes ?
+            - img [ref=e144]
+          - button "Livrez-vous en dehors de Hyères ?" [ref=e147] [cursor=pointer]:
+            - generic [ref=e148]: Livrez-vous en dehors de Hyères ?
+            - img [ref=e149]
+          - button "Combien de temps à l'avance faut-il réserver ?" [ref=e152] [cursor=pointer]:
+            - generic [ref=e153]: Combien de temps à l'avance faut-il réserver ?
+            - img [ref=e154]
+      - generic [ref=e156]:
+        - heading "Prêt à régaler vos invités ?" [level=2] [ref=e157]
+        - paragraph [ref=e158]: Contactez-nous pour discuter de votre événement et recevoir un devis personnalisé gratuit sous 24h.
+        - link "Demander un devis gratuit" [ref=e159] [cursor=pointer]:
+          - /url: /#contact-form
