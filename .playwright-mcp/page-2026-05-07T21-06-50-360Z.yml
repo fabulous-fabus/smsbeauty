@@ -1,0 +1,89 @@
+- generic [ref=e2]:
+  - link "Retour à l'accueil" [ref=e5] [cursor=pointer]:
+    - /url: /
+    - img [ref=e6]
+    - text: Retour à l'accueil
+  - generic [ref=e8]:
+    - generic [ref=e10]:
+      - paragraph [ref=e11]: Wedding by SMS · Hyères
+      - heading "Notre Blog" [level=1] [ref=e12]
+      - paragraph [ref=e13]: Inspirations · Conseils · Tendances mariage
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - button "Tous les articles" [ref=e16] [cursor=pointer]
+        - button "Présentation" [ref=e17] [cursor=pointer]
+        - button "Décoration" [ref=e18] [cursor=pointer]
+        - button "Traiteur" [ref=e19] [cursor=pointer]
+        - button "Robes de Soirée" [ref=e20] [cursor=pointer]
+      - generic [ref=e21]: Chargement...
+    - contentinfo [ref=e22]:
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - generic [ref=e25]:
+            - generic [ref=e26]:
+              - img [ref=e27]
+              - generic [ref=e29]: Wedding by SMSBeauty
+            - paragraph [ref=e30]: Votre partenaire de confiance pour des événements d'exception. Traiteur, mode et décoration réunis sous un même toit de prestige.
+            - generic [ref=e31]:
+              - link "Instagram" [ref=e32] [cursor=pointer]:
+                - /url: https://www.instagram.com/smsbeaut.y/
+                - img [ref=e33]
+              - link "Facebook" [ref=e36] [cursor=pointer]:
+                - /url: https://www.facebook.com/shamaliya.negafaziyana
+                - img [ref=e37]
+          - generic [ref=e39]:
+            - heading "Navigation" [level=4] [ref=e40]
+            - list [ref=e41]:
+              - listitem [ref=e42]:
+                - button "Accueil" [ref=e43] [cursor=pointer]
+              - listitem [ref=e44]:
+                - button "Services" [ref=e45] [cursor=pointer]
+              - listitem [ref=e46]:
+                - button "À Propos" [ref=e47] [cursor=pointer]
+              - listitem [ref=e48]:
+                - button "Galerie" [ref=e49] [cursor=pointer]
+              - listitem [ref=e50]:
+                - button "Témoignages" [ref=e51] [cursor=pointer]
+              - listitem [ref=e52]:
+                - button "Contact" [ref=e53] [cursor=pointer]
+          - generic [ref=e54]:
+            - heading "Nos Services" [level=4] [ref=e55]
+            - list [ref=e56]:
+              - listitem [ref=e57]:
+                - button "Traiteur oriental" [ref=e58] [cursor=pointer]
+              - listitem [ref=e59]:
+                - button "Location de robes" [ref=e60] [cursor=pointer]
+              - listitem [ref=e61]:
+                - button "Vente de robes" [ref=e62] [cursor=pointer]
+              - listitem [ref=e63]:
+                - button "Décoration événementielle" [ref=e64] [cursor=pointer]
+              - listitem [ref=e65]:
+                - button "Forfait mariage complet" [ref=e66] [cursor=pointer]
+          - generic [ref=e67]:
+            - heading "Coordonnées" [level=4] [ref=e68]
+            - list [ref=e69]:
+              - listitem [ref=e70]:
+                - img [ref=e71]
+                - link "+33 6 66 37 75 26" [ref=e73] [cursor=pointer]:
+                  - /url: tel:+33666377526
+              - listitem [ref=e74]:
+                - img [ref=e75]
+                - link "contact@weddingbysms.fr" [ref=e78] [cursor=pointer]:
+                  - /url: mailto:contact@weddingbysms.fr
+              - listitem [ref=e79]:
+                - img [ref=e80]
+                - generic [ref=e83]: Hyères et Var
+            - generic [ref=e84]:
+              - button "Devis gratuit" [ref=e85] [cursor=pointer]
+              - link "Admin" [ref=e86] [cursor=pointer]:
+                - /url: /login
+                - img [ref=e87]
+                - text: Admin
+        - generic [ref=e90]:
+          - paragraph [ref=e91]: © 2026 SMSBeauty. Tous droits réservés.
+          - paragraph [ref=e92]: Fait avec passion pour vos plus beaux instants
+  - generic [ref=e93]:
+    - generic [ref=e94]: Contactez-nous sur WhatsApp
+    - link "Contactez-nous sur WhatsApp" [ref=e95] [cursor=pointer]:
+      - /url: https://wa.me/33666377526?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20vos%20services
+      - img [ref=e96]

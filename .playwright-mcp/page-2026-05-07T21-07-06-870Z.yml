@@ -1,0 +1,7 @@
+- generic [ref=e2]:
+  - paragraph [ref=e4]: Chargement...
+  - generic [ref=e5]:
+    - generic [ref=e6]: Contactez-nous sur WhatsApp
+    - link "Contactez-nous sur WhatsApp" [ref=e7] [cursor=pointer]:
+      - /url: https://wa.me/33666377526?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20vos%20services
+      - img [ref=e8]

@@ -81,7 +81,7 @@ function processFAQ(html: string): string {
         <input type="checkbox" id="faq-${idx}" class="faq-toggle" />
         <label for="faq-${idx}" class="faq-question">
           <span>${faq.question}</span>
-          <span class="faq-icon">+</span>
+          <span class="faq-chevron"></span>
         </label>
         <div class="faq-answer">${faq.answer}</div>
       </div>`).join('')}
