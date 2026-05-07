@@ -7,6 +7,7 @@ import type { BlogArticle } from '../lib/supabase';
 import SEOHead from '../components/SEOHead';
 import Footer from '../components/Footer';
 import StickyBackButton from '../components/StickyBackButton';
+import RichSnippets from '../components/RichSnippets';
 import './BlogArticlePage.css';
 
 // Configure marked to handle CTA buttons
@@ -172,6 +173,17 @@ export default function BlogArticlePage() {
         description={article.extrait}
         url={`https://weddingbysms.fr/blog/${article.slug}`}
         image={article.image_url || '/tajine.jpg'}
+      />
+      <RichSnippets
+        type="Article"
+        data={{
+          headline: article.titre,
+          description: article.extrait,
+          image: article.image_url || '/tajine.jpg',
+          datePublished: article.created_at,
+          dateModified: article.updated_at,
+          url: `https://weddingbysms.fr/blog/${article.slug}`,
+        }}
       />
 
       <StickyBackButton href="/blog" label="Retour au blog" />

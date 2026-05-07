@@ -6,6 +6,7 @@ import type { BlogArticle } from '../lib/supabase';
 import SEOHead from '../components/SEOHead';
 import Footer from '../components/Footer';
 import StickyBackButton from '../components/StickyBackButton';
+import RichSnippets from '../components/RichSnippets';
 
 const CATEGORIES = [
   { value: 'all', label: 'Tous les articles' },
@@ -57,6 +58,7 @@ export default function BlogPage() {
         description="Découvrez nos articles sur la décoration de mariage, le traiteur oriental, les robes de soirée et les tendances événementielles à Hyères."
         url="https://weddingbysms.fr/blog"
       />
+      <RichSnippets type="CollectionPage" data={{}} />
 
       <StickyBackButton href="/" label="Retour à l'accueil" />
 

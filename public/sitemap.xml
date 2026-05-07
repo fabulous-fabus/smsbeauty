@@ -1,27 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
   <url>
     <loc>https://weddingbysms.fr/</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://weddingbysms.fr/service/traiteur-oriental</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://weddingbysms.fr/service/robes-soiree</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://weddingbysms.fr/service/decoration-evenementielle</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://weddingbysms.fr/blog</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://weddingbysms.fr/privacy</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://weddingbysms.fr/blog/traiteur-oriental-dans-le-var</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>

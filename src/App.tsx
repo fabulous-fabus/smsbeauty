@@ -12,6 +12,7 @@ import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CookieBanner from './components/CookieBanner';
+import RichSnippets from './components/RichSnippets';
 import AdminPanel from './pages/AdminPanel';
 import LoginPage from './pages/LoginPage';
 import ServiceDetailPage from './pages/ServiceDetailPage';
@@ -45,6 +46,7 @@ function HomePage() {
 
   return (
     <div className="min-h-screen">
+      <RichSnippets type="LocalBusiness" data={{}} />
       <Header />
       <Hero />
       <Services />

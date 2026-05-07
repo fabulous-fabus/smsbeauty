@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import SEOHead from '../components/SEOHead';
 import StickyBackButton from '../components/StickyBackButton';
+import RichSnippets from '../components/RichSnippets';
 
 const serviceSEO: Record<string, { title: string; description: string; keywords: string }> = {
   'traiteur-oriental': {
@@ -94,6 +95,17 @@ export default function ServiceDetailPage() {
     return (
       <>
         {seo && <SEOHead title={seo.title} description={seo.description} keywords={seo.keywords} url={`https://weddingbysms.fr/service/${serviceId}`} />}
+        <RichSnippets
+          type="Service"
+          data={{
+            name: 'Traiteur Oriental',
+            description: seo?.description,
+            url: `https://weddingbysms.fr/service/${serviceId}`,
+            image: 'https://weddingbysms.fr/tajine.jpg',
+            serviceType: 'Catering',
+            priceRange: '$$',
+          }}
+        />
         <StickyBackButton href="/#services" label="Retour aux services" />
         <div className="min-h-screen bg-cream-50">
 
@@ -239,6 +251,17 @@ export default function ServiceDetailPage() {
   return (
     <>
       {seo && <SEOHead title={seo.title} description={seo.description} keywords={seo.keywords} url={`https://weddingbysms.fr/service/${serviceId}`} />}
+      <RichSnippets
+        type="Service"
+        data={{
+          name: content.title,
+          description: content.description,
+          url: `https://weddingbysms.fr/service/${serviceId}`,
+          image: 'https://weddingbysms.fr/tajine.jpg',
+          serviceType: content.title,
+          priceRange: '$$',
+        }}
+      />
       <StickyBackButton href="/#services" label="Retour aux services" />
       <div className="min-h-screen bg-cream-50">
         <div className="bg-charcoal-800 text-white px-6 py-10">
