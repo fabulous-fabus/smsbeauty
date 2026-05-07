@@ -13,6 +13,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CookieBanner from './components/CookieBanner';
 import RichSnippets from './components/RichSnippets';
+import WhatsAppWidget from './components/WhatsAppWidget';
 import AdminPanel from './pages/AdminPanel';
 import LoginPage from './pages/LoginPage';
 import ServiceDetailPage from './pages/ServiceDetailPage';
@@ -56,6 +57,7 @@ function HomePage() {
       <Testimonials />
       <Contact />
       <Footer />
+      <WhatsAppWidget />
 
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
