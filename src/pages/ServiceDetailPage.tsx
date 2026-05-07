@@ -104,6 +104,36 @@ export default function ServiceDetailPage() {
             image: 'https://weddingbysms.fr/tajine.jpg',
             serviceType: 'Catering',
             priceRange: '$$',
+            offers: [
+              {
+                '@type': 'Offer',
+                name: 'Buffet froid et chaud',
+                priceCurrency: 'EUR',
+                price: '18-35',
+                priceValidUntil: '2027-12-31',
+              },
+              {
+                '@type': 'Offer',
+                name: 'Cocktail dînatoire',
+                priceCurrency: 'EUR',
+                price: '25-50',
+                priceValidUntil: '2027-12-31',
+              },
+              {
+                '@type': 'Offer',
+                name: 'Plat unique',
+                priceCurrency: 'EUR',
+                price: '12-20',
+                priceValidUntil: '2027-12-31',
+              },
+              {
+                '@type': 'Offer',
+                name: 'Menu complet',
+                priceCurrency: 'EUR',
+                price: '45-80',
+                priceValidUntil: '2027-12-31',
+              },
+            ],
           }}
         />
         <StickyBackButton href="/#services" label="Retour aux services" />

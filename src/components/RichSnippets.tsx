@@ -76,6 +76,7 @@ export default function RichSnippets({ type, data }: RichSnippetProps) {
           areaServed: 'Hyères, Var, France',
           priceRange: data.priceRange || '$$',
           serviceType: data.serviceType,
+          ...(data.offers && { offers: data.offers }),
         };
 
       case 'CollectionPage':

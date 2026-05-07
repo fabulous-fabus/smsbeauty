@@ -1,0 +1,159 @@
+- generic [ref=e2]:
+  - link "Retour au blog" [ref=e5] [cursor=pointer]:
+    - /url: /blog
+    - img [ref=e6]
+    - text: Retour au blog
+  - generic [ref=e8]:
+    - generic [ref=e10]:
+      - paragraph [ref=e11]: Traiteur
+      - 'heading "Traiteur Oriental dans le Var : le bon prestataire pour votre mariage ?" [level=1] [ref=e12]'
+      - generic [ref=e13]:
+        - img [ref=e14]
+        - generic [ref=e16]: 2 mai 2026
+    - article [ref=e17]:
+      - generic [ref=e18]:
+        - 'heading "Traiteur oriental dans le Var : comment choisir le bon prestataire pour votre mariage ?" [level=2] [ref=e19]':
+          - strong [ref=e20]: "Traiteur oriental dans le Var : comment choisir le bon prestataire pour votre mariage ?"
+        - paragraph [ref=e21]: Vous cherchez un traiteur oriental dans le Var pour votre mariage ? Que vous organisiez votre réception à Hyères, Toulon ou Fréjus, le choix du prestataire culinaire est décisif. Voici l'essentiel pour bien choisir, éviter les erreurs et comprendre les prix.
+        - separator [ref=e22]
+        - paragraph [ref=e23]:
+          - text: Pourquoi choisir un
+          - link "traiteur oriental" [ref=e24] [cursor=pointer]:
+            - /url: https://weddingbysms.fr/service/traiteur-oriental
+          - text: "pour son mariage dans le Var ? La cuisine orientale, c'est une expérience sensorielle : épices, générosité, dépaysement. Couscous royal, tajine d'agneau, méchoui, pastilla, des plats qui créent l'émerveillement et font parler toute la soirée. Dans le Var, la demande pour des traiteurs halal certifiés est en forte croissance. Pour un mariage musulman ou mixte, l'attestation halal est non-négociable — demandez-la systématiquement avant de signer."
+        - separator [ref=e25]
+        - paragraph [ref=e26]:
+          - strong [ref=e27]: Les spécialités à prévoir
+        - list [ref=e28]:
+          - listitem [ref=e29]: "Cuisine marocaine : couscous royal, tajine, méchoui, pastilla"
+          - listitem [ref=e30]: "Cuisine algérienne : chorba, boureks, couscous berbère, briouates"
+          - listitem [ref=e31]: "Desserts : baklawa, cornes de gazelle, makrout, thé à la menthe Ne les négligez pas, c'est la dernière image que vos invités emporteront."
+        - separator [ref=e32]
+        - paragraph [ref=e33]:
+          - strong [ref=e34]: Quel budget prévoir ?
+          - text: FormulePrix / personne
+        - list [ref=e35]:
+          - listitem [ref=e36]: Buffet froid et chaud 18 – 35€
+          - listitem [ref=e37]: Cocktail dînatoire 25 – 50€
+          - listitem [ref=e38]: Plat unique 12 – 20€
+          - listitem [ref=e39]: Menu complet 45 – 80€
+        - paragraph [ref=e40]:
+          - strong [ref=e41]:
+            - strong [ref=e42]: Attention aux suppléments
+          - text: ": vaisselle orientale (4–6 €/pers), personnel de service, livraison. Demandez toujours un devis détaillé ligne par ligne."
+        - paragraph
+        - link "Demander un Devis Gratuit" [ref=e44] [cursor=pointer]:
+          - /url: /#contact
+        - paragraph
+        - paragraph [ref=e45]:
+          - strong [ref=e46]: Les 5 critères pour bien choisir
+        - list [ref=e47]:
+          - listitem [ref=e48]: Vérifiez la certification halal — attestation officielle obligatoire
+          - listitem [ref=e49]: Exigez une dégustation avant de signer
+          - listitem [ref=e50]: Lisez les avis récents, spécifiquement pour des mariages
+          - listitem [ref=e51]: Comparez 3 devis minimum, tout inclus
+          - listitem [ref=e52]: Réservez 8 à 12 mois à l'avance — l'été dans le Var part très vite
+        - separator [ref=e53]
+        - paragraph [ref=e54]:
+          - strong [ref=e55]: Ne pensez pas qu'au repas
+          - text: "C'est l'angle que personne n'aborde : un mariage oriental ne s'arrête pas à la table. Décoration (lanternes, tentures, coussins), cérémonie du henné, tenues de soirée — tout contribue à créer une cohérence et une magie mémorables. Chez"
+          - strong [ref=e56]: Wedding by SMS
+          - text: "à Hyères, nous proposons une approche globale : coordination complète,"
+          - link "décoration orientale" [ref=e57] [cursor=pointer]:
+            - /url: https://weddingbysms.fr/service/decoration-evenementielle
+          - text: sur mesure et accompagnement le jour J.
+        - separator [ref=e58]
+        - paragraph [ref=e59]:
+          - strong [ref=e60]: FAQ
+        - generic [ref=e61]:
+          - generic [ref=e62]:
+            - generic [ref=e63] [cursor=pointer]:
+              - generic [ref=e64]: Combien coûte un traiteur oriental dans le Var ?
+              - generic [ref=e65]: +
+            - generic: Entre 18 et 80 € par personne selon la formule. Pour 100 invités avec menu complet, comptez 1 800 à 8 000 €.
+          - generic [ref=e66]:
+            - generic [ref=e67] [cursor=pointer]:
+              - generic [ref=e68]: Faut-il obligatoirement que ce soit halal ?
+              - generic [ref=e69]: +
+            - generic: Pour un mariage musulman, oui. Demandez l'attestation officielle.
+          - generic [ref=e70]:
+            - generic [ref=e71] [cursor=pointer]:
+              - generic [ref=e72]: Quand réserver ?
+              - generic [ref=e73]: +
+            - generic: 8 à 12 mois à l'avance minimum pour les week-ends d'été.
+        - paragraph [ref=e74]:
+          - text: Traiteur oriental à Hyères et dans tout le Var —
+          - strong [ref=e75]: Wedding by SMS
+          - text: vous accompagne de A à Z. Contactez-nous pour votre devis personnalisé.
+      - generic [ref=e78]: Traiteur
+    - generic [ref=e80]:
+      - heading "Besoin d'aide pour votre événement?" [level=3] [ref=e81]
+      - paragraph [ref=e82]: Nos experts sont à votre disposition pour organiser votre mariage ou événement.
+      - link "Demander un devis" [ref=e83] [cursor=pointer]:
+        - /url: /
+    - contentinfo [ref=e84]:
+      - generic [ref=e85]:
+        - generic [ref=e86]:
+          - generic [ref=e87]:
+            - generic [ref=e88]:
+              - img [ref=e89]
+              - generic [ref=e91]: Wedding by SMSBeauty
+            - paragraph [ref=e92]: Votre partenaire de confiance pour des événements d'exception. Traiteur, mode et décoration réunis sous un même toit de prestige.
+            - generic [ref=e93]:
+              - link "Instagram" [ref=e94] [cursor=pointer]:
+                - /url: https://www.instagram.com/smsbeaut.y/
+                - img [ref=e95]
+              - link "Facebook" [ref=e98] [cursor=pointer]:
+                - /url: https://www.facebook.com/shamaliya.negafaziyana
+                - img [ref=e99]
+          - generic [ref=e101]:
+            - heading "Navigation" [level=4] [ref=e102]
+            - list [ref=e103]:
+              - listitem [ref=e104]:
+                - button "Accueil" [ref=e105] [cursor=pointer]
+              - listitem [ref=e106]:
+                - button "Services" [ref=e107] [cursor=pointer]
+              - listitem [ref=e108]:
+                - button "À Propos" [ref=e109] [cursor=pointer]
+              - listitem [ref=e110]:
+                - button "Galerie" [ref=e111] [cursor=pointer]
+              - listitem [ref=e112]:
+                - button "Témoignages" [ref=e113] [cursor=pointer]
+              - listitem [ref=e114]:
+                - button "Contact" [ref=e115] [cursor=pointer]
+          - generic [ref=e116]:
+            - heading "Nos Services" [level=4] [ref=e117]
+            - list [ref=e118]:
+              - listitem [ref=e119]:
+                - button "Traiteur oriental" [ref=e120] [cursor=pointer]
+              - listitem [ref=e121]:
+                - button "Location de robes" [ref=e122] [cursor=pointer]
+              - listitem [ref=e123]:
+                - button "Vente de robes" [ref=e124] [cursor=pointer]
+              - listitem [ref=e125]:
+                - button "Décoration événementielle" [ref=e126] [cursor=pointer]
+              - listitem [ref=e127]:
+                - button "Forfait mariage complet" [ref=e128] [cursor=pointer]
+          - generic [ref=e129]:
+            - heading "Coordonnées" [level=4] [ref=e130]
+            - list [ref=e131]:
+              - listitem [ref=e132]:
+                - img [ref=e133]
+                - link "+33 6 66 37 75 26" [ref=e135] [cursor=pointer]:
+                  - /url: tel:+33666377526
+              - listitem [ref=e136]:
+                - img [ref=e137]
+                - link "contact@weddingbysms.fr" [ref=e140] [cursor=pointer]:
+                  - /url: mailto:contact@weddingbysms.fr
+              - listitem [ref=e141]:
+                - img [ref=e142]
+                - generic [ref=e145]: Hyères et Var
+            - generic [ref=e146]:
+              - button "Devis gratuit" [ref=e147] [cursor=pointer]
+              - link "Admin" [ref=e148] [cursor=pointer]:
+                - /url: /login
+                - img [ref=e149]
+                - text: Admin
+        - generic [ref=e152]:
+          - paragraph [ref=e153]: © 2026 SMSBeauty. Tous droits réservés.
+          - paragraph [ref=e154]: Fait avec passion pour vos plus beaux instants
