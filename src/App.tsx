@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { ChevronUp } from 'lucide-react';
 import Header from './components/Header';
@@ -57,7 +57,6 @@ function HomePage() {
       <Testimonials />
       <Contact />
       <Footer />
-      <WhatsAppWidget />
 
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -72,10 +71,13 @@ function HomePage() {
   );
 }
 
-export default function App() {
+function AppContent() {
+  const location = useLocation();
+  const hiddenPaths = ['/admin', '/login', '/photos'];
+  const showWhatsApp = !hiddenPaths.some(path => location.pathname.startsWith(path));
+
   return (
-    <HelmetProvider>
-      <Router>
+    <>
       <CookieBanner />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -102,6 +104,16 @@ export default function App() {
         />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+      {showWhatsApp && <WhatsAppWidget />}
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <HelmetProvider>
+      <Router>
+        <AppContent />
       </Router>
     </HelmetProvider>
   );
