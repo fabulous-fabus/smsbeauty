@@ -1,7 +1,8 @@
-import { ArrowLeft, Check, ChevronDown, ChevronUp, MapPin, Users, Star } from 'lucide-react';
+import { Check, ChevronDown, ChevronUp, MapPin, Users, Star } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import SEOHead from '../components/SEOHead';
+import StickyBackButton from '../components/StickyBackButton';
 
 const serviceSEO: Record<string, { title: string; description: string; keywords: string }> = {
   'traiteur-oriental': {
@@ -93,15 +94,12 @@ export default function ServiceDetailPage() {
     return (
       <>
         {seo && <SEOHead title={seo.title} description={seo.description} keywords={seo.keywords} url={`https://weddingbysms.fr/service/${serviceId}`} />}
+        <StickyBackButton href="/#services" label="Retour aux services" />
         <div className="min-h-screen bg-cream-50">
 
           {/* Header */}
           <div className="bg-charcoal-800 text-white px-6 py-10">
             <div className="max-w-7xl mx-auto">
-              <Link to="/#services" className="flex items-center gap-2 hover:text-gold-500 transition-colors mb-6 text-sm">
-                <ArrowLeft className="w-4 h-4" />
-                Retour aux services
-              </Link>
               <p className="text-gold-400 font-sans text-xs tracking-[0.3em] uppercase mb-3">Wedding by SMS · Hyères</p>
               <h1 className="font-serif text-4xl md:text-5xl mb-3">Traiteur Oriental</h1>
               <p className="text-white/70 text-lg">Saveurs authentiques · Cuisine maison · Devis gratuit</p>
@@ -241,13 +239,10 @@ export default function ServiceDetailPage() {
   return (
     <>
       {seo && <SEOHead title={seo.title} description={seo.description} keywords={seo.keywords} url={`https://weddingbysms.fr/service/${serviceId}`} />}
+      <StickyBackButton href="/#services" label="Retour aux services" />
       <div className="min-h-screen bg-cream-50">
         <div className="bg-charcoal-800 text-white px-6 py-10">
           <div className="max-w-7xl mx-auto">
-            <Link to="/#services" className="flex items-center gap-2 hover:text-gold-500 transition-colors mb-6 text-sm">
-              <ArrowLeft className="w-4 h-4" />
-              Retour aux services
-            </Link>
             <p className="text-gold-400 font-sans text-xs tracking-[0.3em] uppercase mb-3">Wedding by SMS · Hyères</p>
             <h1 className="font-serif text-4xl md:text-5xl mb-3">{content.title}</h1>
             <p className="text-white/70 text-lg">{content.subtitle}</p>

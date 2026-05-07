@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
 import { marked } from 'marked';
 import { supabase } from '../lib/supabase';
 import type { BlogArticle } from '../lib/supabase';
 import SEOHead from '../components/SEOHead';
 import Footer from '../components/Footer';
+import StickyBackButton from '../components/StickyBackButton';
 import './BlogArticlePage.css';
 
 // Configure marked to handle CTA buttons
@@ -173,16 +174,11 @@ export default function BlogArticlePage() {
         image={article.image_url || '/tajine.jpg'}
       />
 
+      <StickyBackButton href="/blog" label="Retour au blog" />
+
       <div className="min-h-screen bg-cream-50">
         <div className="bg-charcoal-800 text-white px-6 py-10">
           <div className="max-w-4xl mx-auto">
-            <Link
-              to="/blog"
-              className="inline-flex items-center gap-2 px-3 py-1.5 border border-white/30 rounded-full text-sm hover:bg-white/10 transition-colors mb-6"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Retour au blog
-            </Link>
             <p className="text-gold-400 font-sans text-xs tracking-[0.3em] uppercase mb-3">
               {CATEGORY_LABELS[article.categorie] || article.categorie}
             </p>

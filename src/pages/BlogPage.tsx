@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Calendar } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import type { BlogArticle } from '../lib/supabase';
 import SEOHead from '../components/SEOHead';
 import Footer from '../components/Footer';
+import StickyBackButton from '../components/StickyBackButton';
 
 const CATEGORIES = [
   { value: 'all', label: 'Tous les articles' },
@@ -57,16 +58,11 @@ export default function BlogPage() {
         url="https://weddingbysms.fr/blog"
       />
 
+      <StickyBackButton href="/" label="Retour à l'accueil" />
+
       <div className="min-h-screen bg-cream-50">
         <div className="bg-charcoal-800 text-white px-6 py-10">
           <div className="max-w-7xl mx-auto">
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 px-3 py-1.5 border border-white/30 rounded-full text-sm hover:bg-white/10 transition-colors mb-6"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Retour à l'accueil
-            </Link>
             <p className="text-gold-400 font-sans text-xs tracking-[0.3em] uppercase mb-3">
               Wedding by SMS · Hyères
             </p>
