@@ -10,7 +10,7 @@ interface SEOHeadProps {
 }
 
 const SITE_NAME = 'Wedding by SMS';
-const DEFAULT_IMAGE = '/tajine.jpg';
+const DEFAULT_IMAGE = '/20240711_151936.jpg';
 const SITE_URL = 'https://weddingbysms.fr';
 
 export default function SEOHead({

@@ -21,7 +21,7 @@ export default function RichSnippets({ type, data }: RichSnippetProps) {
           url: 'https://weddingbysms.fr',
           telephone: data.telephone || '+33 6 XX XX XX XX',
           email: data.email || 'contact@weddingbysms.fr',
-          image: 'https://weddingbysms.fr/tajine.jpg',
+          image: 'https://weddingbysms.fr/20240711_151936.jpg',
           address: {
             '@type': 'PostalAddress',
             streetAddress: data.streetAddress || '',
@@ -39,7 +39,7 @@ export default function RichSnippets({ type, data }: RichSnippetProps) {
           ...baseSchema,
           headline: data.headline,
           description: data.description,
-          image: data.image || 'https://weddingbysms.fr/tajine.jpg',
+          image: data.image || 'https://weddingbysms.fr/20240711_151936.jpg',
           datePublished: data.datePublished,
           dateModified: data.dateModified || data.datePublished,
           author: {
@@ -67,7 +67,7 @@ export default function RichSnippets({ type, data }: RichSnippetProps) {
           name: data.name,
           description: data.description,
           url: data.url,
-          image: data.image || 'https://weddingbysms.fr/tajine.jpg',
+          image: data.image || 'https://weddingbysms.fr/20240711_151936.jpg',
           provider: {
             '@type': 'LocalBusiness',
             name: 'Wedding by SMS',
